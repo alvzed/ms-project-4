@@ -93,7 +93,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = 'accounts/login/'
-LOGIN_REDIRECT_URL = 'library/'  # library is not yet set up
+LOGIN_REDIRECT_URL = '/'  # library is not yet set up
 
 WSGI_APPLICATION = 'rivulet.wsgi.application'
 
