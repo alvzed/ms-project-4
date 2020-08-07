@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>This is the library</h1>
+    {% if user.is_authenticated %}
+        <h1>This is the library</h1>
+    {% else %}
+        <h1>This is forbidden</h1>
+    {% endif %}
 {% endblock %}
