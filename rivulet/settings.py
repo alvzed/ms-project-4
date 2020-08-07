@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
     # apps
     'landing',
+    'library',
 ]
 
 MIDDLEWARE = [
