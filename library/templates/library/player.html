@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Video player | Rivulet</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% block content %}
 
     <!-- The following code is taked directly from the youtube iframe api section -->
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
+    <a href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
 
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -26,11 +17,18 @@
       // 3. This function creates an <iframe> (and YouTube player)
       //    after the API code downloads.
       var player;
+
+      var viewportHeight = Math.max(document.documentElement.clientHeight || 0,
+                         window.innerHeight || 0);
+      var viewportWidth = Math.max(document.documentElement.clientWidth || 0, window
+                        .innerWidth || 0);
+
+
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: '100%',
-          width: '100%',
-          videoId: 'Dx5qFachd3A',
+          height: viewportHeight - 125,
+          width: viewportWidth,
+          videoId: '{{ video.video_link }}',
           events: {
             'onReady': onPlayerReady,
           }
@@ -43,8 +41,4 @@
       }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  </body>
-</html>
+{% endblock %}
