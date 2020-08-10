@@ -19,22 +19,6 @@ def library(request):
     return render(request, 'library/library.html', context)
 
 
-def category(request, category_name):
-    """ a view to to return the landing page """
-    if not request.user.is_authenticated:
-        return redirect('/')
-
-    videos = Video.objects.filter(Category=category_name)
-    categories = Category.objects.all()
-
-    context = {
-        'videos': videos,
-        'categories': categories,
-    }
-
-    return render(request, 'library/category.html', context)
-
-
 def player(request, video_id):
     """ a view to return the video player for individual videos """
     if not request.user.is_authenticated:
