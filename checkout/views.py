@@ -8,11 +8,13 @@ import stripe
 
 def subscribe(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe.public_key = settings.STRIPE_PUBLIC_KEY
 
     product = stripe.Product.retrieve("prod_HoW9lL2kill8wX")
 
     context = {
         'product': product,
+        'stripe': stripe,
     }
 
     return render(request, 'checkout/subscribe.html', context)
