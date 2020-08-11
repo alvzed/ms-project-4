@@ -29,7 +29,7 @@ def create_customer(request):
     )
     # At this point, associate the ID of the Customer object with your
     # own internal representation of a customer, if you have one.
-    existing_user = UserProfile.objects.get(pk=user_id.pk).exists()
+    existing_user = UserProfile.objects.filter(user=user_id).exists()
     if existing_user:
         return redirect('/library/')
     else:
