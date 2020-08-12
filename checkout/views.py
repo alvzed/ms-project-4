@@ -12,9 +12,7 @@ def subscribe(request):
 
     product = stripe.Product.retrieve("prod_HoW9lL2kill8wX")
 
-    price = {
-        '1_month': stripe.Price.retrieve("price_1HEt6yFztXrGefLPT4HmsC83"),
-    }
+    price = stripe.Price.retrieve("price_1HEt6yFztXrGefLPT4HmsC83"),
 
     context = {
         'product': product,
@@ -56,7 +54,7 @@ def plan(request):
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
     user_profile.current_plan_ID = product.id
-    user_profile.current_price_ID = price.id
+    user_profile.current_price_ID = price
     user_profile.save()
     return redirect('/checkout/')
 
@@ -67,6 +65,19 @@ def payment(request):
 
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
+
+    stripe.checkout.Session.create(
+        success_url=('https://8000-e111429f-0ac1-4c29-982e-be58b81b8bae.ws-eu01.gitpod.io/checkout/payment'),
+        cancel_url=('https://8000-e111429f-0ac1-4c29-982e-be58b81b8bae.ws-eu01.gitpod.io/checkout/'),
+        payment_method_types=["card"],
+        line_items=[
+            {
+                "price": user_profile.current_price_ID,
+                "quantity": 1,
+            },
+        ],
+        mode="subscription",
+    )
 
     context = {
         'user_profile': user_profile,

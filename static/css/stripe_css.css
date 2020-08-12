@@ -1,28 +1,30 @@
 /**
-* Shows how you can use CSS to style your Element's container.
-*/
-.MyCardElement {
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
+
   height: 40px;
+
   padding: 10px 12px;
-  width: 100%;
-  color: #32325d;
-  background-color: white;
+
   border: 1px solid transparent;
   border-radius: 4px;
+  background-color: white;
 
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
 }
 
-.MyCardElement--focus {
+.StripeElement--focus {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
-.MyCardElement--invalid {
+.StripeElement--invalid {
   border-color: #fa755a;
 }
 
-.MyCardElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;}
