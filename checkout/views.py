@@ -62,11 +62,15 @@ def plan(request):
 
 
 def payment(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe.public_key = settings.STRIPE_PUBLIC_KEY
+
     user = request.user
     user_profile = UserProfile.objects.get(user=user)
 
     context = {
         'user_profile': user_profile,
+        'Stripe': stripe,
     }
 
     return render(request, 'checkout/payment.html', context)
