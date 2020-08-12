@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     # apps
     'landing',
     'library',
-    'checkout',
+    'donations',
 ]
 
 MIDDLEWARE = [
