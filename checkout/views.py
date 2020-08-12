@@ -46,6 +46,27 @@ def create_customer(request):
 
 
 def plan(request):
-    user = UserProfile.objects.get(user=request.user)
-    print(user)
-    return 'success'
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe.public_key = settings.STRIPE_PUBLIC_KEY
+
+    product = stripe.Product.retrieve("prod_HoW9lL2kill8wX")
+
+    price = stripe.Price.retrieve("price_1HEt6yFztXrGefLPT4HmsC83")
+
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+    user_profile.current_plan_ID = product.id
+    user_profile.current_price_ID = price.id
+    user_profile.save()
+    return redirect('/checkout/')
+
+
+def payment(request):
+    user = request.user
+    user_profile = UserProfile.objects.get(user=user)
+
+    context = {
+        'user_profile': user_profile,
+    }
+
+    return render(request, 'checkout/payment.html', context)
