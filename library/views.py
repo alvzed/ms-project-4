@@ -14,6 +14,8 @@ def library(request):
     genre = None
     query = None
 
+    most_viewed = videos.order_by('views').reverse()[0:4]
+
     if request.GET:
         if 'genre' in request.GET:
             genre = request.GET['genre']
@@ -33,6 +35,7 @@ def library(request):
         'videos': videos,
         'categories': categories,
         'search_term': query,
+        'most_viewed': most_viewed,
     }
 
     return render(request, 'library/library.html', context)

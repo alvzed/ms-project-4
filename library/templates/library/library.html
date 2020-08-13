@@ -1,21 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+
     <h1>This is the library</h1>
     <section>
-        {% for video in videos %}
-            <div class="container">
-                <a href="#">
-                    <!-- The link below fetches the youtube video's thumbnail -->
-                    <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
-                    <h3>{{ video.title }}</h3>
+        <div class="container">
+            <div class="row">
+                {% for video in most_viewed %}
+                    <div class="container">
+                        <a href="#">
+                            <!-- The link below fetches the youtube video's thumbnail -->
+                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
+                            <h3>{{ video.title }}</h3>
+                            
+                        </a>
+                        <p>{{ video.description|truncatechars:50 }}</p>
+                    </div> 
+                {% endfor %}
+            </div>
+
+            <div class="row">
+                {% for video in videos %}
+                    <div class="container">
+                        <a href="#">
+                            <!-- The link below fetches the youtube video's thumbnail -->
+                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
+                            <h3>{{ video.title }}</h3>
+                            
+                        </a>
+                        <p>{{ video.description|truncatechars:50 }}</p>
+                    </div> 
                     
-                </a>
-                <p>{{ video.description|truncatechars:50 }}</p>
-            </div> 
-            
-        {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
     </section>
     
 {% endblock %}
