@@ -11,10 +11,15 @@ def library(request):
 
     videos = Video.objects.all()
     categories = Category.objects.all()
-
+    genre = None
     query = None
 
     if request.GET:
+        if 'genre' in request.GET:
+            genre = request.GET['genre']
+            print(genre)
+            videos = videos.filter(category__slug__iexact=genre)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:

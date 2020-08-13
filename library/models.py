@@ -6,14 +6,14 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-    name = models.CharField(max_length=50)
-    friendly_name = models.CharField(max_length=50, blank=True, null=True)
+    slug = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return self.slug
 
     def get_friedly_name(self):
-        return self.friendly_name
+        return self.name
 
 
 class Video(models.Model):
