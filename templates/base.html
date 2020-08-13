@@ -27,7 +27,8 @@
     <title>Rivulet</title>
   </head>
   <body>
-
+  <!-- This if statement stops the navbar from rendering on the landing page -->
+  {% if not request.path == '/' %}
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="{% url 'library' %}">Rivulet</a>
@@ -57,7 +58,7 @@
         {% endif %}
       </div>
     </nav>
-
+  {% endif %}
     {% block content %}
     {% endblock %}
 
