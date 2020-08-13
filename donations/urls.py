@@ -4,5 +4,6 @@ from . import views
 
 urlpatterns = [
     path('', views.donate, name='donate'),
-    path('success/<str:args>', views.success, name='success')
+    path('charge/', views.charge, name='charge'),
+    path('success/<str:args>/', views.success, name='success'),
 ]

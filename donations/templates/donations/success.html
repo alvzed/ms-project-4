@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Thank you for your donation of {{ amount }}{{ currency }} worth of slugs</h1>
+    <a href="{% url 'library' %}">Go to library</a>
 {% endblock %}

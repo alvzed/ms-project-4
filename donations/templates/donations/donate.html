@@ -1,63 +1,87 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <style>
-        /**
-        * The CSS shown here will not be introduced in the Quickstart guide, but shows
-        * how you can use CSS to style your Element's container.
-        */
-        .StripeElement {
-        box-sizing: border-box;
+<style type="text/css">
+/* below is a solution to the bootstrap css conflict with stripe elements */
+.form-row {
+    display: inherit;
+}
+    /**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  box-sizing: border-box;
 
-        height: 40px;
+  height: 40px;
 
-        padding: 10px 12px;
+  padding: 10px 12px;
 
-        border: 1px solid transparent;
-        border-radius: 4px;
-        background-color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
 
-        box-shadow: 0 1px 3px 0 #e6ebf1;
-        -webkit-transition: box-shadow 150ms ease;
-        transition: box-shadow 150ms ease;
-        }
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
 
-        .StripeElement--focus {
-        box-shadow: 0 1px 3px 0 #cfd7df;
-        }
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
 
-        .StripeElement--invalid {
-        border-color: #fa755a;
-        }
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
 
-        .StripeElement--webkit-autofill {
-        background-color: #fefde5 !important;
-        }
-    </style>
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;}
+</style>
 
-    <p>hi {{ user.email }} </p>
-    <h1>please give me money</h1>
+<form action="{% url 'charge' %}" method="post" id="payment-form">
+  {% csrf_token %}
 
-    <form action="/charge" method="post" id="payment-form">
-        <div class="form-row">
-            <label for="card-element">
-            Credit or debit card
-            </label>
-            <div id="card-element">
-            <!-- A Stripe Element will be inserted here. -->
-            </div>
+    <div class="form-group">
+      <label for="donationAmount">Please select your donation amount</label>
+      <select class="form-control" id="donationAmount" name="donationAmount">
+        <option value="1">1€</option>
+        <option value="5">5€</option>
+        <option value="10">10€</option>
+        <option value="15">15€</option>
+        <option value="20">20€</option>
+      </select>
+    </div>
 
-            <!-- Used to display form errors. -->
-            <div id="card-errors" role="alert"></div>
-        </div>
+    <div class="form-group">
+    <label for="InputEmail">Email address</label>
+    <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" name="InputEmail" {% if user.is_authenticated %}value="{{ user.email }}"{% endif %} required>
+  </div>
+  <div class="form-group">
+    <label for="InputName">Name</label>
+    <input type="text" class="form-control" id="InputName" name="InputName" required>
+  </div>
 
-        <button>Submit Payment</button>
-    </form>
 
-    <a href="{% url 'library' %}">go back to library</a>
+  <div class="form-row">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
 
-    <script>
-        var stripe = Stripe('{{ stripe.public_key }}');
+    <!-- Used to display form errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button>Submit Payment</button>
+</form>
+
+
+
+<script>
+    // Create a Stripe client.
+        var stripe = Stripe('pk_test_51HBhUUFztXrGefLPWk7yydAue6hohVGEd5NmUauyjdwg6o0VCJ6CAxM6JgkEjpBH70tdUXoPqX7BEpnbKRp7gLPW00PjlKlTlF');
 
         // Create an instance of Elements.
         var elements = stripe.elements();
@@ -85,6 +109,7 @@
 
         // Add an instance of the card Element into the `card-element` <div>.
         card.mount('#card-element');
+
         // Handle real-time validation errors from the card Element.
         card.on('change', function(event) {
         var displayError = document.getElementById('card-errors');
@@ -125,6 +150,6 @@
         // Submit the form
         form.submit();
         }
-    </script>
+</script>
 
 {% endblock %}
