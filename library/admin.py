@@ -7,11 +7,12 @@ class VideoAdmin(admin.ModelAdmin):
         'category',
         'title',
         'description',
-        'video_link',
         'pg',
+        'video_link',
+        'views',
     )
 
-    ordering = ('category',)
+    ordering = ('title',)
 
 
 class CategoryAdmin(admin.ModelAdmin):
