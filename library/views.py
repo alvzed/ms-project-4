@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.db.models import Q
 from .models import Video, Category
 
 
@@ -11,9 +12,22 @@ def library(request):
     videos = Video.objects.all()
     categories = Category.objects.all()
 
+    query = None
+
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                print('Search query empty')
+                return redirect(reverse('library'))
+            queries = Q(title__icontains=query) | \
+                Q(description__icontains=query)
+            videos = videos.filter(queries)
+
     context = {
         'videos': videos,
         'categories': categories,
+        'search_term': query,
     }
 
     return render(request, 'library/library.html', context)
@@ -31,14 +45,3 @@ def player(request, video_id):
     }
 
     return render(request, 'library/player.html', context)
-
-
-def category(request, category):
-    if not request.user.is_authenticated:
-        return redirect('/')
-
-    context = {
-        'category': category,
-    }
-
-    return render(request, 'library/category.html', context)
