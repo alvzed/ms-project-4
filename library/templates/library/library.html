@@ -5,6 +5,8 @@
     <h1>This is the library</h1>
     <section>
         <div class="container">
+
+        {% if not request.GET%}
             <div class="row">
                 {% for video in most_viewed %}
                     <div class="container">
@@ -18,7 +20,7 @@
                     </div> 
                 {% endfor %}
             </div>
-
+        {% endif %}
             <div class="row">
                 {% for video in videos %}
                     <div class="container">

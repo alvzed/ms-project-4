@@ -19,6 +19,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'slug',
+        'clicks',
     )
 
 

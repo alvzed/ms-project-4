@@ -19,8 +19,13 @@ def library(request):
     if request.GET:
         if 'genre' in request.GET:
             genre = request.GET['genre']
-            print(genre)
+
             videos = videos.filter(category__slug__iexact=genre)
+
+            current_category = categories.filter(slug=genre)
+            print(current_category)
+            # current_category.clicks += 1
+            # current_category.save()
 
         if 'q' in request.GET:
             query = request.GET['q']
