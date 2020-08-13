@@ -31,3 +31,14 @@ def player(request, video_id):
     }
 
     return render(request, 'library/player.html', context)
+
+
+def category(request, category):
+    if not request.user.is_authenticated:
+        return redirect('/')
+
+    context = {
+        'category': category,
+    }
+
+    return render(request, 'library/category.html', context)
