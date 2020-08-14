@@ -11,7 +11,8 @@
     {% block corecss %}
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
       <script src="https://kit.fontawesome.com/57a4e2c4be.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="assets/css/style.css">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
 
     {% block corejs %}
@@ -49,6 +50,9 @@
                   <a class="dropdown-item" href="{% url 'library' %}?genre={{ category.slug }}">{{ category.name }}</a>
                 {% endfor %}
               </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'donate' %}">Donate</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'library' %}">

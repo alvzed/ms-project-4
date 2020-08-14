@@ -6,13 +6,14 @@
     <section>
         <div class="container">
 
+        <!-- This if statement renders the most viewed videos when on the library page -->
         {% if not request.GET%}
             <div class="row">
                 {% for video in most_viewed %}
-                    <div class="container">
+                    <div class="container col-2 m-0">
                         <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
-                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
+                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             <h3>{{ video.title }}</h3>
                             
                         </a>
