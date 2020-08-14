@@ -24,7 +24,7 @@
                     </div> 
                 {% endfor %}
             </div>
-        {% endif %}
+        
 
         <h3 class="category-title">Most popular categories</h3>
         {% for category in popular_categories %}
@@ -34,6 +34,9 @@
             </div>
         {% endfor %}
 
+        {% endif %}
+        
+        {% if 'q' in request.GET %}
             <div class="row category-row">
                 {% for video in videos %}
                     <div class="container col-2 m-0 thumbnail-container">
@@ -49,7 +52,7 @@
                     
                 {% endfor %}
             </div>
-
+        {% endif %}
         </div>
     </section>
     
