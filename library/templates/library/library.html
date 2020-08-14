@@ -2,36 +2,38 @@
 
 {% block content %}
 
-    <h1>This is the library</h1>
     <section>
         <div class="container">
-
+        <h3 class="category-title">Most viewed</h3>
         <!-- This if statement renders the most viewed videos when on the library page -->
         {% if not request.GET%}
-            <div class="row">
+            <div class="row category-row">
                 {% for video in most_viewed %}
-                    <div class="container col-2 m-0">
+                    <div class="container col-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
-                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
-                            <h3>{{ video.title }}</h3>
-                            
+                            <div class="thumbnail-overflow">
+                                <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
+                            </div>
+                            <h3 class="video-title">{{ video.title }}</h3>
+                            <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
-                        <p>{{ video.description|truncatechars:50 }}</p>
+                        
                     </div> 
                 {% endfor %}
             </div>
         {% endif %}
-            <div class="row">
+            <div class="row category-row">
                 {% for video in videos %}
-                    <div class="container">
+                    <div class="container col-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
-                            <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
-                            <h3>{{ video.title }}</h3>
-                            
+                            <div class="thumbnail-overflow">
+                                <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
+                            </div>
+                            <h3 class="video-title">{{ video.title }}</h3>
+                            <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
-                        <p>{{ video.description|truncatechars:50 }}</p>
                     </div> 
                     
                 {% endfor %}

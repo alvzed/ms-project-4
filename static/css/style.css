@@ -1,5 +1,58 @@
+body {
+    z-index: 0;
+}
+
+.thumbnail-container {
+    position: relative;
+    padding: 0 1vw;
+    overflow: hidden;
+    transition: 200ms;
+}
+
+.thumbnail-container:hover {
+    background-color: black;
+    transform: scale(2, 2);
+    z-index: 99;
+}
+
 .thumbnail {
     height: 15vh;
     overflow: hidden;
+    margin-top: 2vh;
 }
 
+.thumbnail-overflow {
+    overflow: hidden;
+}
+
+
+.video-title {
+    font-size: 1em;
+}
+
+.thumbnail-container .video-description {
+    padding: 2vh;
+    font-size: 0.5em;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    position: absolute;
+    z-index: 1000;
+    top: 2vh;
+    left: 1vw;
+
+    height: 15vh;
+    width: 100%;
+
+    opacity: 0;
+    transition: 200ms;
+}
+
+.thumbnail-container .video-description:hover {
+    opacity: 1;
+}
+
+.category-row {
+    margin: 5vh 0;
+    background-color: rgba(175, 175, 175, 0.1);
+}
