@@ -10,7 +10,7 @@
             <div class="row">
                 {% for video in most_viewed %}
                     <div class="container">
-                        <a href="#">
+                        <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
                             <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
                             <h3>{{ video.title }}</h3>
@@ -24,7 +24,7 @@
             <div class="row">
                 {% for video in videos %}
                     <div class="container">
-                        <a href="#">
+                        <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
                             <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail">
                             <h3>{{ video.title }}</h3>

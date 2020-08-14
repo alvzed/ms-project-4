@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.db.models import Q
+from django.db.models import Q, F
 from .models import Video, Category
 
 
@@ -22,10 +22,9 @@ def library(request):
 
             videos = videos.filter(category__slug__iexact=genre)
 
-            current_category = categories.filter(slug=genre)
-            print(current_category)
-            # current_category.clicks += 1
-            # current_category.save()
+            current_category = categories.get(slug=genre)
+            current_category.clicks = F('clicks') + 1
+            current_category.save()
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -52,6 +51,9 @@ def player(request, video_id):
         return redirect('/')
 
     video = get_object_or_404(Video, pk=video_id)
+
+    video.views = F('views') + 1
+    video.save()
 
     context = {
         'video': video,
