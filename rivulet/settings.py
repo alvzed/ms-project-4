@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'landing',
     'library',
     'donations',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
