@@ -25,11 +25,20 @@
                 {% endfor %}
             </div>
         {% endif %}
+
+        <h3 class="category-title">Most popular categories</h3>
+        {% for category in popular_categories %}
+            {{ category.name }}
+            <div class="row category-row">
+                <p>Videos</p>
+            </div>
+        {% endfor %}
+<!--
             <div class="row category-row">
                 {% for video in videos %}
                     <div class="container col-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
-                            <!-- The link below fetches the youtube video's thumbnail -->
+
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
@@ -40,6 +49,7 @@
                     
                 {% endfor %}
             </div>
+            -->
         </div>
     </section>
     

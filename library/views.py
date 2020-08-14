@@ -11,16 +11,20 @@ def library(request):
         return redirect('/')
 
     user = request.user
-
     user_profile = UserProfile.objects.get_or_create(user=user)
-    print(user_profile)
 
     videos = Video.objects.all()
     categories = Category.objects.all()
     genre = None
     query = None
 
-    most_viewed = videos.order_by('views').reverse()[0:4]
+    most_viewed = videos.order_by('views').reverse()[0:5]
+    popular_categories = categories.order_by('clicks').reverse()[0:3]
+    top_category_videos = videos.filter(category=popular_categories[0])[0:5]
+    second_category_videos = videos.filter(category=popular_categories[1])[0:5]
+    third_category_videos = videos.filter(category=popular_categories[2])[0:4]
+
+    print(top_category_videos)
 
     if request.GET:
         if 'genre' in request.GET:
@@ -28,6 +32,7 @@ def library(request):
 
             videos = videos.filter(category__slug__iexact=genre)
 
+            # The statements below increment a click counter in the model
             current_category = categories.get(slug=genre)
             current_category.clicks = F('clicks') + 1
             current_category.save()
@@ -43,9 +48,14 @@ def library(request):
 
     context = {
         'videos': videos,
-        'categories': categories,
-        'search_term': query,
         'most_viewed': most_viewed,
+        'categories': categories,
+        'popular_categories': popular_categories,
+        'top_category_videos': top_category_videos,
+        'second_category_videos': second_category_videos,
+        # 'third_category_videos': third_category_videos,
+        'search_term': query,
+        'user_profile': user_profile,
     }
 
     return render(request, 'library/library.html', context)
