@@ -4,7 +4,9 @@
 
     <section>
         <div class="container">
-        <h3 class="category-title">Most viewed</h3>
+        {% if not request.GET %}
+            <h3 class="category-title">Most viewed</h3>
+        {% endif %}
         <!-- This if statement renders the most viewed videos when on the library page -->
         {% if not request.GET%}
             <div class="row category-row">
