@@ -20,9 +20,12 @@ def library(request):
 
     most_viewed = videos.order_by('views').reverse()[0:5]
     popular_categories = categories.order_by('clicks').reverse()[0:3]
-    top_category_videos = videos.filter(category=popular_categories[0])[0:5]
-    second_category_videos = videos.filter(category=popular_categories[1])[0:5]
-    third_category_videos = videos.filter(category=popular_categories[2])[0:4]
+    top_category_videos = videos.filter(category=popular_categories[0])\
+        .order_by('views').reverse()[0:5]
+    second_category_videos = videos.filter(category=popular_categories[1])\
+        .order_by('views').reverse()[0:5]
+    third_category_videos = videos.filter(category=popular_categories[2])\
+        .order_by('views').reverse()[0:5]
 
     print(top_category_videos)
 
