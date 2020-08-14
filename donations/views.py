@@ -1,3 +1,4 @@
+import math
 from django.conf import settings
 from django.shortcuts import render, redirect, reverse
 
@@ -48,10 +49,12 @@ def charge(request):
 
 def success(request, args):
     amount = args
+    donation = math.trunc((int(amount) / 100))
 
     context = {
         'amount': amount,
         'currency': '€',
+        'donation': donation,
     }
     return render(request, 'donations/success.html', context)
 

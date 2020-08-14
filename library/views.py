@@ -53,7 +53,7 @@ def library(request):
         'popular_categories': popular_categories,
         'top_category_videos': top_category_videos,
         'second_category_videos': second_category_videos,
-        # 'third_category_videos': third_category_videos,
+        'third_category_videos': third_category_videos,
         'search_term': query,
         'user_profile': user_profile,
     }
@@ -66,12 +66,7 @@ def player(request, video_id):
     if not request.user.is_authenticated:
         return redirect('/')
 
-    user = request.user
-    user_profile = UserProfile.objects.get(user=user)
-
     video = get_object_or_404(Video, pk=video_id)
-
-    user_profile.history.add(video)
 
     video.views = F('views') + 1
     video.save()
