@@ -20,7 +20,6 @@ def donate(request):
 
 
 def charge(request):
-    
     if request.method == 'POST':
         print('Data:', request.POST)
 
@@ -39,7 +38,7 @@ def charge(request):
             description='donation',
         )
 
-    return redirect(reverse('success', args=[amount]))
+        return redirect(reverse('success', args=[amount]))
 
 
 def success(request, args):

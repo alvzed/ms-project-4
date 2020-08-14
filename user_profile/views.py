@@ -9,6 +9,7 @@ def userpage(request):
 
     context = {
         'user_profile': user_profile,
+        'user': user,
     }
 
     return render(request, 'user_profile/userpage.html', context)
