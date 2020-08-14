@@ -25,20 +25,25 @@ def charge(request):
 
         amount = int(request.POST['donationAmount']) * 100
 
-        customer = stripe.Customer.create(
-            email=request.POST['InputEmail'],
-            name=request.POST['InputName'],
-            source=request.POST['stripeToken']
-        )
+        try:
+            customer = stripe.Customer.create(
+                email=request.POST['InputEmail'],
+                name=request.POST['InputName'],
+                source=request.POST['stripeToken']
+            )
 
-        charge = stripe.Charge.create(
-            customer=customer,
-            amount=amount,
-            currency='eur',
-            description='donation',
-        )
+            charge = stripe.Charge.create(
+                customer=customer,
+                amount=amount,
+                currency='eur',
+                description='donation',
+            )
 
-        return redirect(reverse('success', args=[amount]))
+            return redirect(reverse('success', args=[amount]))
+        except:
+            # THIS IS A BAD IDEA
+            # this except should, and will, not be bare in future versions
+            return redirect(reverse('failure'))
 
 
 def success(request, args):
@@ -49,3 +54,7 @@ def success(request, args):
         'currency': '€',
     }
     return render(request, 'donations/success.html', context)
+
+
+def failure(request):
+    return render(request, 'donations/failure.html')
