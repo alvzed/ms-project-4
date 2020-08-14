@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q, F
 from .models import Video, Category
+from user_profile.models import UserProfile
 
 
 # Create your views here.
@@ -8,6 +9,11 @@ def library(request):
     """ a view to to return the landing page """
     if not request.user.is_authenticated:
         return redirect('/')
+
+    user = request.user
+
+    user_profile = UserProfile.objects.get_or_create(user=user)
+    print(user_profile)
 
     videos = Video.objects.all()
     categories = Category.objects.all()

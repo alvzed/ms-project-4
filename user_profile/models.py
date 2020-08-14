@@ -10,4 +10,4 @@ class UserProfile(models.Model):
     history = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        self.id
+        return ''
