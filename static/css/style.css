@@ -25,6 +25,47 @@ section {
     color: royalblue;
 }
 
+/* ----- Styling for auth forms ----- */
+.form-container {
+    padding: 2vh 22vw;
+}
+
+.form-container input {
+    width: 80%;
+    margin: 0;
+}
+
+.form-container label {
+    min-width: 19%;
+    margin: 0
+}
+
+#id_remember {
+    width: auto;
+    margin-right: 70%;
+}
+
+.form-container p input {
+    border-radius: 2px;
+    border: none;
+    padding: 0.5vh 1vh;
+    background: rgba(0,0,0,0.1);
+}
+
+.form-container .btn {
+    width: 49%;
+}
+
+/* style for the 'sign up' form */
+
+#id_password2 {
+    width: 72.5%;
+}
+
+.form-container .btn-sign-up {
+    width: 100%;
+}
+
 /* ----- The library ----- */
 .thumbnail-container {
     position: relative;
