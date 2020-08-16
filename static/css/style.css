@@ -6,6 +6,58 @@ section {
     margin-bottom: 10vh;
 }
 
+/* ----- general button colours ----- */
+.btn-primary {
+    background-color: #B0C0D8;
+    border-color: #c8d0e0;
+    border-radius: 2px;
+    min-width: 8vw;
+} 
+
+/* hover styles and overwriting bootstrap button styles for primary button */
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active {
+    background-color: #7088A8;
+    border-color: #7088A8;
+    box-shadow: none;
+}
+
+.btn-outline-primary {
+    background-color: none;
+    border-color: #c8d0e0;
+    border-radius: 2px;
+    min-width: 8vw;
+    color: #7088A8;
+} 
+
+/* hover styles and overwriting bootstrap button styles for outline-primary button */
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary:focus,
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+    background-color: #B0C0D8;
+    border-color: #c8d0e0;
+    box-shadow: none;
+}
+
+.btn-success {
+    background-color: #486890;
+    border-color: #6078a8;
+    border-radius: 2px;
+    min-width: 8vw;
+} 
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus,
+.btn-success:not(:disabled):not(.disabled):active {
+    background-color: #283850;
+    border-color: #203048;
+    box-shadow: none;
+}
+
 /* ----- Landing page ----- */
 #landing {
     height: 100vh;
@@ -13,6 +65,15 @@ section {
     background-image: url('../img/rivulet-landing.jpg');
     background-size: cover;
     background-repeat: none;
+}
+
+#landing h1 {
+    padding-top: 20vh;
+    margin-bottom: 10vh;
+    font-size: 5em;
+    color: #101828;
+    opacity: 0.6;
+    filter: drop-shadow(0 0.5rem 1.5rem #203048);
 }
 
 /* ----- The navbar and footer ----- */
