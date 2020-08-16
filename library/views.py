@@ -15,19 +15,24 @@ def library(request):
 
     videos = Video.objects.all()
     categories = Category.objects.all()
+    # Genre is used to filter between categories
     genre = None
+    # Query is used for the search funtion
     query = None
+    # this is used in case the query turns up empty
+    search_message = None
 
+    # Gets the 5 most viewed videos from the library
     most_viewed = videos.order_by('views').reverse()[0:5]
+    # Gets the 3 most clicked cartegories from the library
     popular_categories = categories.order_by('clicks').reverse()[0:3]
+    # These get the 5 most viewed videos in the 3 most popular categories
     top_category_videos = videos.filter(category=popular_categories[0])\
         .order_by('views').reverse()[0:5]
     second_category_videos = videos.filter(category=popular_categories[1])\
         .order_by('views').reverse()[0:5]
     third_category_videos = videos.filter(category=popular_categories[2])\
         .order_by('views').reverse()[0:5]
-
-    print(top_category_videos)
 
     if request.GET:
         if 'genre' in request.GET:
@@ -48,6 +53,8 @@ def library(request):
             queries = Q(title__icontains=query) | \
                 Q(description__icontains=query)
             videos = videos.filter(queries)
+            if not videos.exists():
+                search_message = 'No matches'
 
     context = {
         'videos': videos,
@@ -58,6 +65,7 @@ def library(request):
         'second_category_videos': second_category_videos,
         'third_category_videos': third_category_videos,
         'search_term': query,
+        'search_message': search_message,
         'user_profile': user_profile,
     }
 

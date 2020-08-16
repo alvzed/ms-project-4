@@ -2,6 +2,30 @@ body {
     z-index: 0;
 }
 
+section {
+    margin-bottom: 10vh;
+}
+
+/* ----- The navbar and footer ----- */
+#footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+#faq {
+    float: right;
+    margin: 1vh 1vw;
+    color: white;
+    transition: 100ms;
+}
+
+#faq:hover {
+    color: royalblue;
+}
+
+/* ----- The library ----- */
 .thumbnail-container {
     position: relative;
     padding: 0 1vw;

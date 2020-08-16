@@ -28,7 +28,7 @@
 
         <h3 class="category-title">Most popular categories</h3>
         {% for category in popular_categories %}
-            {{ category.name }}
+            <h4 class="popular-category-title">{{ category.name }}</h4>
             <div class="row category-row">
                 {% if forloop.counter0 == 0 %}
                     {% for video in top_category_videos %}
@@ -76,6 +76,9 @@
         {% endif %}
 
         {% if 'q' in request.GET %}
+            {% if search_message %}
+                <h3>{{ search_message }}</h3>
+            {% endif %}
             <div class="row category-row">
                 {% for video in videos %}
                     <div class="container col-2 m-0 thumbnail-container">
