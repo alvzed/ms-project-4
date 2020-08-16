@@ -75,7 +75,7 @@
 
         {% endif %}
 
-        {% if 'q' in request.GET %}
+        {% if 'q' in request.GET or 'genre' in request.GET %}
             {% if search_message %}
                 <h3>{{ search_message }}</h3>
             {% endif %}
