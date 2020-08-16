@@ -6,6 +6,15 @@ section {
     margin-bottom: 10vh;
 }
 
+/* ----- Landing page ----- */
+#landing {
+    height: 100vh;
+    margin: 0;
+    background-image: url('../img/rivulet-landing.jpg');
+    background-size: cover;
+    background-repeat: none;
+}
+
 /* ----- The navbar and footer ----- */
 #footer {
     position: fixed;
