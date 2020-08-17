@@ -2,9 +2,9 @@
 {% block content %}
 
     <section>
-        <div class="container text-center">
+        <div class="container text-center mt-5">
             <h1>Oops, that wasn't supposed to happen</h1>
-            <p>Please try again later</p>
+            <p>Please <a href="{% url 'donate' %}">try again</a> or go <a href="{% url 'library' %}">go back to library</a></p>
         </div>
     </section>
     
