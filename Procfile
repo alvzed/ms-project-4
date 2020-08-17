@@ -1,1 +1,1 @@
-web: gunicorn rivulet.wsgi.py:application
+web: gunicorn rivulet.wsgi:application
