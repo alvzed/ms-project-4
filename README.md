@@ -25,22 +25,33 @@ This project is a small streaming service, with the goal of being a smooth and s
 ![search page](/wireframes/search_page.png)
 ![search page mobile](/wireframes/search_page_mobile.png)
 
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
+The wireframes for this project are quite simple as it took a lot of inspiration from other streaming sites (mainly netflix), and this was a method to try to avoid looking _exactly_ like those sites. The responsiveness is planned out to be a stacking of thumbnails on top of each other when the smaller the screen gets. 
 
 ## Features
-
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
  
 ### Existing Features
-- Feature 1 - allows users X to achieve Y, by having them fill out Z
-- ...
-
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
-
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+- User authorization - allows users to create an account that stores user information and lets logged in user's see the content on the site. This includes sign up, login and logout pages.
+- Landing page - this view redirects logged in users to the library directly but stops unauthorized users and shows them buttons that are linked to the sign up and login pages. All views redirect to this page is the user isn't authorized.
+- Library - the main page of the site, it shows the user thumbnails of the following videos: 
+    - The most 5 viewed videos and 
+    - The most 5 viewed videos of the 3 most clicked categories. 
+- Videos - at the moment this stores a video object which inludes a title, a description, a foreign key to a category, a PG integer, and a youtube ID. This project uses a youtube iframe api to display videos as the database is currently too small to store entire videos on it. 
+- Categories - an object that stores a slug and a name, the slug is for filtering and the name is for displaying on the page. 
+- Filtering - uses the slug from the category object and a dropdown bar to filter the videos and only show the ones with a matching category. It also uses the name to display a title to show what category you are currently on. 
+- Search - a form on the navbar which submits a query variable, the variable is then used to filter through the videos and display any video what a title or description that has matching keywords. It displays how many results you have on the top of the page if the search bar is empty is simply returns you to the main library page. 
+- Player - A view that displays a specific video and starts playing it directly. 
+- User page - a view that currently displays a greeting including the user's username and three buttons: change password, donate and back to library. 
+- Donations - allows users to submit small single payments via stripe to support the site. This is currently quite crude and only processes either succeeded payments or failed payments and redirecting them to a specific page based on this. 
 
 ### Features Left to Implement
-- Another feature idea
+- Actors - a model which would relate the actors to various videos that would allow users to filter and search by actors names.
+- Subcategories - a model which would have a many to one relationship with categories and allow users to dive deeper into filtering videos.
+- Storing more categories - allowing videos to have several categories for videos that match several categories definitions. 
+- Extended userpage - storing a user history which would be used to recommend videos and display a "latest watched" on the userpage.
+- Subscription system - developing the donation system to have recurring payments and handling more webhooks. This would also be used for the user authorization and extended userpage to store information regarding payments, missed payments, etc. 
+- Video ratings - would allow users to submit a rating that would be used for a list of good and bad ratings to create an average score of a video. 
+- Recommedations - will use a users click and view history to create recommendations for the user.
+
 
 ## Technologies Used
 
