@@ -17,8 +17,10 @@ def library(request):
     categories = Category.objects.all()
     # Genre is used to filter between categories
     genre = None
+    current_category = None
     # Query is used for the search funtion
     query = None
+    query_count = None
     # this is used in case the query turns up empty
     search_message = None
 
@@ -53,6 +55,8 @@ def library(request):
             queries = Q(title__icontains=query) | \
                 Q(description__icontains=query)
             videos = videos.filter(queries)
+            query_count = videos.count()
+
             if not videos.exists():
                 search_message = 'No matches'
 
@@ -60,11 +64,13 @@ def library(request):
         'videos': videos,
         'most_viewed': most_viewed,
         'categories': categories,
+        'current_category': current_category,
         'popular_categories': popular_categories,
         'top_category_videos': top_category_videos,
         'second_category_videos': second_category_videos,
         'third_category_videos': third_category_videos,
         'search_term': query,
+        'query_count': query_count,
         'search_message': search_message,
         'user_profile': user_profile,
     }

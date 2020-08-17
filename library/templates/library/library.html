@@ -77,10 +77,20 @@
 
         {% endif %}
 
+    <!-- this section is for search queries and filtering -->
+
         {% if 'q' in request.GET or 'genre' in request.GET %}
-            {% if search_message %}
-                <h3>{{ search_message }}</h3>
-            {% endif %}
+            
+
+            <h3 class="category-title mt-4">
+                {% if search_message %}
+                    {{ search_message }}
+                {% elif query_count %}
+                    {{ query_count }} result{% if query_count > 1 %}s{% endif %} found
+                {% elif 'genre' in request.GET %}
+                    {{ current_category.name }}
+                {% endif %}
+            </h3>
             <div class="row category-row">
                 {% for video in videos %}
                     <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
