@@ -216,6 +216,21 @@ p {
 
 }
 
+/* styling for the donations form */
+#donation input {
+    width: 100%;
+    
+}
+
+#donation label {
+    margin: 2rem 0 0.5rem 0; 
+}
+
+#donation .btn-success {
+    margin-top: 2vh;
+}
+
+
 /* ----- The library ----- */
 /* category titles */
 #most-viewed {
