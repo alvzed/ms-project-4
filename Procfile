@@ -1,0 +1,1 @@
+web: gunicorn rivulet.wsgi.py:application
