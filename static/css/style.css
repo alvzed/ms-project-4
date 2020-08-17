@@ -147,6 +147,10 @@ p {
     padding-left: 1rem;
 }
 
+.nav-link i {
+    color: #101828;
+}
+
 /* footer */
 #footer {
     position: fixed;
@@ -338,11 +342,16 @@ p {
 }
 
 #userpage p {
-    color: #203048;
     margin-bottom: 5vh;
 }
 
 #userpage .btn {
     width: 20%;
     margin: 1vh auto;
+}
+
+@media (max-width: 600px) {
+    #userpage .btn {
+        width: 60%;
+    }
 }
