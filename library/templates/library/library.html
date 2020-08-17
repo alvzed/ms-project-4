@@ -5,7 +5,7 @@
     <section>
         <div class="container">
         {% if not request.GET %}
-            <h3 class="category-title">Most viewed</h3>
+            <h3 class="category-title" id="most-viewed">Most viewed</h3>
         {% endif %}
         <!-- This if statement renders the most viewed videos when on the library page -->
         {% if not request.GET%}
@@ -28,7 +28,9 @@
 
         <h3 class="category-title">Most popular categories</h3>
         {% for category in popular_categories %}
-            <h4 class="popular-category-title">{{ category.name }}</h4>
+            <a href="{% url 'library' %}?genre={{ category.slug }}">
+                <h4 class="popular-category-title">{{ category.name }}</h4>
+            </a>
             <div class="row category-row">
                 {% if forloop.counter0 == 0 %}
                     {% for video in top_category_videos %}

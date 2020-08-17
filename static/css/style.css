@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+/* ----- general styling and colours ----- */
 body {
     z-index: 0;
+    background: rgba(200, 208, 224, 0.3);
 }
 
 section {
@@ -12,6 +14,10 @@ section {
 * {
     font-family: Arial, Helvetica, sans-serif;
     color: #101828;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 p {
@@ -98,7 +104,6 @@ p {
 }
 
 #landing p {
-    /* color: #dde3f1d3; */
     color: rgb(255, 204, 0);;
     font-size: 1.5rem;
     filter: drop-shadow(0 0.1rem 0 #000);
@@ -210,6 +215,25 @@ p {
 }
 
 /* ----- The library ----- */
+/* category titles */
+#most-viewed {
+    margin-top: 4vh;
+}
+
+.popular-category-title {
+    color: rgb(255, 204, 0);;
+    filter: drop-shadow(0 0.1rem 0 #000);
+}
+
+.popular-category-title::before {
+    content: '[ ';
+}
+
+.popular-category-title::after {
+    content: ' ]';
+}
+
+/* Thumbnails and general library */
 .thumbnail-container {
     position: relative;
     padding: 0 1vw;
@@ -218,8 +242,8 @@ p {
 }
 
 .thumbnail-container:hover {
-    background-color: black;
-    transform: scale(2, 2);
+    background-color: rgb(200, 208, 224);
+    transform: scale(1.5, 1.5);
     z-index: 99;
 }
 
@@ -239,17 +263,17 @@ p {
 }
 
 .thumbnail-container .video-description {
-    padding: 2vh;
+    padding: 3vh;
     font-size: 0.5em;
     background: rgba(0, 0, 0, 0.5);
     color: white;
 
     position: absolute;
     z-index: 1000;
-    top: 2vh;
-    left: 1vw;
+    top: 0;
+    left: 0;
 
-    height: 15vh;
+    height: 100%;
     width: 100%;
 
     opacity: 0;
@@ -260,8 +284,9 @@ p {
     opacity: 1;
 }
 
+
 .category-row {
-    margin: 5vh 0;
+    margin: 2vh 0 5vh 0;
     background-color: rgba(175, 175, 175, 0.1);
 }
 
