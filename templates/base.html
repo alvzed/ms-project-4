@@ -11,6 +11,7 @@
     {% block corecss %}
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
       <script src="https://kit.fontawesome.com/57a4e2c4be.js" crossorigin="anonymous"></script>
+      <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
       {% load static %}
       <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
@@ -76,9 +77,11 @@
     {% block content %}
     {% endblock %}
 
-    <footer id="footer" class="bg-secondary w-100">
-      <a id="faq" href="https://www.imdb.com/title/tt0910554/"><i class="far fa-question-circle"></i></a>
-    </footer>
+    {% if not request.path == '/' %}
+      <footer id="footer" class="bg-secondary w-100">
+        <a id="faq" href="https://www.imdb.com/title/tt0910554/"><i class="far fa-question-circle"></i></a>
+      </footer>
+    {% endif %}
 
     {% block stripe_js %}
     {% endblock %}

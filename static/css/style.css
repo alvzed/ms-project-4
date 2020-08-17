@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 body {
     z-index: 0;
 }
@@ -6,10 +8,22 @@ section {
     margin-bottom: 10vh;
 }
 
+/* general font styles */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #101828;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
 /* ----- general button colours ----- */
 .btn-primary {
     background-color: #B0C0D8;
-    border-color: #c8d0e0;
+    border-color: #B0C0D8;
     border-radius: 2px;
     min-width: 8vw;
 } 
@@ -44,7 +58,7 @@ section {
 
 .btn-success {
     background-color: #486890;
-    border-color: #6078a8;
+    border-color: #486890;
     border-radius: 2px;
     min-width: 8vw;
 } 
@@ -65,15 +79,48 @@ section {
     background-image: url('../img/rivulet-landing.jpg');
     background-size: cover;
     background-repeat: none;
+    background-position-y: 1050px; 
+    background-position-x: -90px;
 }
 
 #landing h1 {
-    padding-top: 20vh;
-    margin-bottom: 10vh;
+    font-family: 'Bebas Neue', cursive;
+    padding-top: 26vh;
+    margin-bottom: 5vh;
     font-size: 5em;
-    color: #101828;
+    letter-spacing: 0.1em;
+    color: #eaf0ffd3;
+    filter: drop-shadow(0 0.5rem 2rem #fff);
+}
+
+#landing p {
+    /* color: #dde3f1d3; */
+    color: rgb(255, 204, 0);;
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0.1rem 0 #000);
+    margin-bottom: 4vw;
+}
+
+#landing-buttons .btn-primary {
+    color: white;
+    background: none!important;
+    border: 1px solid white;
+    border-radius: 2px;
+    min-width: 8vw;
     opacity: 0.6;
-    filter: drop-shadow(0 0.5rem 1.5rem #203048);
+    transition: 100ms;
+}
+
+#landing-buttons i {
+    color: white;
+}
+
+#landing-buttons .btn-primary:hover,
+#landing-buttons .btn-primary:active,
+#landing-buttons .btn-primary:focus,
+#landing-buttons .btn-primary:not(:disabled):not(.disabled):active {
+    opacity: 1;
+    box-shadow: none;
 }
 
 /* ----- The navbar and footer ----- */
