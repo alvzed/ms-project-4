@@ -196,6 +196,19 @@ p {
     width: 100%;
 }
 
+/* styling for password reset */
+#password-reset .btn {
+    width: 100%;
+    margin-bottom: 3vh;
+}
+
+#password-reset label {
+    padding-left: 0;
+    margin-left: 0;
+    padding-right: 8%;
+
+}
+
 /* ----- The library ----- */
 .thumbnail-container {
     position: relative;
