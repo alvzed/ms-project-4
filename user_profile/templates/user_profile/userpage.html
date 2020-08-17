@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-
-    <h1>Welcome to the userpage</h1>
-    {{ user_profile.user }}
-    {{ user.email }}
-
-    <a href="{% url 'account_change_password' %}">Change password</a>
-    <a href="{% url 'account_logout' %}">Log out</a>
-    <a href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
+  <section id="userpage">
+    <div class="container text-center">
+      <h3>Hello {{user}}</h3>
+      <p>Nice to see you again :)</p>
+      <a class="d-block btn btn-primary" href="{% url 'account_change_password' %}">Change password</a>
+      <a class="d-block btn btn-primary" href="{% url 'account_logout' %}">Log out</a>
+      <a class="d-block btn btn-success" href="{% url 'library' %}"><i class="fas fa-arrow-left"></i> Back to library</a>
+    </div>    
+  </section>
+  
 
 {% endblock %}
