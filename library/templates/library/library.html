@@ -11,13 +11,13 @@
         {% if not request.GET%}
             <div class="row category-row">
                 {% for video in most_viewed %}
-                    <div class="container col-2 m-0 thumbnail-container">
+                    <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
                             <!-- The link below fetches the youtube video's thumbnail -->
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
-                            <h3 class="video-title">{{ video.title }}</h3>
+                            <h3 class="video-title text-center">{{ video.title }}</h3>
                             <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
                         
@@ -34,39 +34,39 @@
             <div class="row category-row">
                 {% if forloop.counter0 == 0 %}
                     {% for video in top_category_videos %}
-                    <div class="container col-2 m-0 thumbnail-container">
+                    <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
 
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
-                            <h3 class="video-title">{{ video.title }}</h3>
+                            <h3 class="video-title text-center">{{ video.title }}</h3>
                             <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
                     </div> 
                     {% endfor %}
                 {% elif forloop.counter0 == 1 %}
                     {% for video in second_category_videos %}
-                    <div class="container col-2 m-0 thumbnail-container">
+                    <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
 
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
-                            <h3 class="video-title">{{ video.title }}</h3>
+                            <h3 class="video-title text-center">{{ video.title }}</h3>
                             <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
                     </div> 
                     {% endfor %}
                 {% elif forloop.counter0 == 2 %}
                     {% for video in third_category_videos %}
-                    <div class="container col-2 m-0 thumbnail-container">
+                    <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
 
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
-                            <h3 class="video-title">{{ video.title }}</h3>
+                            <h3 class="video-title text-center">{{ video.title }}</h3>
                             <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
                     </div> 
@@ -83,13 +83,13 @@
             {% endif %}
             <div class="row category-row">
                 {% for video in videos %}
-                    <div class="container col-2 m-0 thumbnail-container">
+                    <div class="container col-12 col-sm-6 col-md-4 col-lg-2 m-0 thumbnail-container">
                         <a href="{% url 'player' video.id %}">
 
                             <div class="thumbnail-overflow">
                                 <img src="http://i.ytimg.com/vi/{{ video.video_link }}/maxresdefault.jpg" alt="Video thumbnail" class="thumbnail">
                             </div>
-                            <h3 class="video-title">{{ video.title }}</h3>
+                            <h3 class="video-title text-center">{{ video.title }}</h3>
                             <p class="video-description">{{ video.description|truncatechars:200 }}</p>
                         </a>
                     </div> 

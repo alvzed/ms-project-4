@@ -4,7 +4,7 @@
     <!-- The following code is taked directly from the youtube iframe api section -->
         <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
-    <a href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
+    <a id="player-back-button" href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
 
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
@@ -26,7 +26,7 @@
 
       function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
-          height: viewportHeight - 125,
+          height: viewportHeight - 150,
           width: viewportWidth,
           videoId: '{{ video.video_link }}',
           events: {
