@@ -194,7 +194,7 @@ Make sure to have a Procfile and requirements.txt so the webapp sets up properly
 Then launch the site with the command H ps:scale web=1.
 A complete guide to the deployment process can be found [here](https://devcenter.H.com/articles/getting-started-with-python).
 
-**The main difference** between the deployed app and the development app is in a few if statements found on settings.py in the rivulet folder. Two if-statements based on an environment variable called USE_AWS decide if the site is in debug mode or not and if they use the static files locally from an AWS bucket. The development version also uses an SQLite database while the deployed version uses Heroku's Postgres database.
+**The main difference** between the deployed app and the development app is in a few if statements found on settings.py in the rivulet folder. Two if-statements based on an environment variable called USE_AWS decide if the site is in debug mode or not and if they use the static files locally or from an AWS bucket. The development version also uses an SQLite database while the deployed version uses Heroku's Postgres database.
 
 ## Credits
 - A huge thank you to Emma Öberg for giving valuable feedback during the UI process, and for testing the site over and over again.
