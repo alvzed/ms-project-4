@@ -25,21 +25,21 @@ This project is a small streaming service, intending to be a smooth and simple e
 ![search page](/wireframes/search_page.png)
 ![search page mobile](/wireframes/search_page_mobile.png)
 
-The wireframes for this project are quite simple as it took a lot of inspiration from other streaming sites (mainly Netflix), and this was a method to try to avoid looking _exactly_ like those sites. The responsiveness is planned out to be a stacking of thumbnails on the top of each other when the smaller the screen gets.
+The wireframes for this project are quite simple as it took a lot of inspiration from other streaming sites (mainly Netflix), and this was a method to try to avoid looking _exactly_ like those sites. The responsiveness is planned out to be a stacking of thumbnails on the top of each other when the screen gets smaller.
 
 ## Features
 
 ### Existing Features
 - User authorization - allows users to create an account that stores user information and lets logged-in users see the content on the site. This includes sign up, login, and logout pages.
 - Admin page - allows a superuser to log in to the admin panel and use CRUD functionality on all users, videos, categories, etc. This is currently the built-in Django admin page as it fulfilled all the functionality needed for the admin user at the moment. This will be built out to a more fitting admin page and functionality on the site itself in the future.
-- Landing page - this view redirects logged in users to the library directly but stops unauthorized users and shows them buttons that are linked to the sign-up and login pages. All views redirect to this page is the user isn't authorized.
+- Landing page - this view redirects logged in users to the library directly but stops unauthorized users and shows them buttons that are linked to the sign-up and login pages. All views redirect to this page if the user isn't authorized.
 - Library - the main page of the site, it shows the user thumbnails of the following videos:
 - The most 5 viewed videos and
 - The most 5 viewed videos of the 3 most clicked categories.
 - Videos - at the moment this stores a video object which includes a title, a description, a foreign key to a category, a PG integer, and a youtube ID. This project uses a youtube iframe API to display videos as the database is currently too small to store entire videos on it.
 - Categories - an object that stores a slug and a name, the slug is for filtering and the name is for displaying on the page.
 - Filtering - uses the slug from the category object and a dropdown bar to filter the videos and only show the ones with a matching category. It also uses the name to display a title to show what category you are currently on.
-- Search - a form on the navbar which submits a query variable, the variable is then used to filter through the videos and display any video what a title or description that has matching keywords. It displays how many results you have on the top of the page if the search bar is empty is simply returns you to the main library page.
+- Search - a form on the navbar which submits a query variable, the variable is then used to filter through the videos and display any video with a title or description that has matching keywords. It displays how many results you have on the top of the page if the search bar is empty is simply returns you to the main library page.
 - Player - A view that displays a specific video and starts playing it directly.
 - User page - a view that currently displays a greeting including the user's username and three buttons: change password, donate, and back to library.
 - Donations - allows users to submit small single payments via stripe to support the site. This is currently quite crude and only processes either succeeded payments or failed payments and redirecting them to a specific page based on this.
@@ -168,7 +168,7 @@ The two of these have not been implemented as the site currently uses a donation
 
 ##### Bugs discovered
 The main tests didn't yield any bugs as they rely on Django which is quite a mature and stable framework.
-What was discovered is when incrementing clicks and views. Whenever you visit the URL of one of the categories or videos it increments the clicks/views, which means that it will happen if someone simply refreshes the page as well. This is something to resolve in future versions.
+Bugs were however discovered during testing the features incrementing clicks and views. Whenever you visit the URL of one of the categories or videos it increments the clicks/views, which means that it will happen if someone simply refreshes the page as well. This is something to resolve in future versions.
 
 #### Current UI
 
@@ -180,18 +180,18 @@ This is how the site currently looks on a desktop and iPhone X.
 ![Library page mobile](/wireframes/rivulet_library_current_mobile.png)
 
 ## Deployment
-Below is a brief summary of how to deploy a site on H, I do not give as good of an explanation as you can find [on their site](https://devcenter.H.com/articles/getting-started-with-python). Please go to this site for a much better explanation.
+Below is a brief summary of how to deploy a site on Heroku, I do not give as good of an explanation as you can find [on their site](https://devcenter.H.com/articles/getting-started-with-python). Please go to this site for a much better explanation.
 
-This project is hosted on H, specifically with the H CLI for python.
-First make sure that you've installed H on your device, if not then install it.
+This project is hosted on Heroku, specifically with the Heroku CLI for python.
+First make sure that you've installed Heroku on your device, if not then install it.
 
-Login to H through the terminal by typing H login and pressing enter.
-Push the project to H with your preferred method.
+Login to Heroku through the terminal by typing Heroku login and pressing enter.
+Push the project to Heroku with your preferred method.
 Set up all the config vars you need in the settings of your project.
 
 Make sure to have a Procfile and requirements.txt so the webapp sets up properly.
 
-Then launch the site with the command H ps:scale web=1.
+Then launch the site with the command heroku ps:scale web=1.
 A complete guide to the deployment process can be found [here](https://devcenter.H.com/articles/getting-started-with-python).
 
 **The main difference** between the deployed app and the development app is in a few if statements found on settings.py in the rivulet folder. Two if-statements based on an environment variable called USE_AWS decide if the site is in debug mode or not and if they use the static files locally or from an AWS bucket. The development version also uses an SQLite database while the deployed version uses Heroku's Postgres database.
