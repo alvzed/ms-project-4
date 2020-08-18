@@ -8,6 +8,8 @@ import stripe
 # Create your views here.
 def donate(request):
     """ a view to to return the landing page """
+    if not request.user.is_authenticated:
+        return redirect('/')
 
     user = request.user
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -48,6 +50,8 @@ def charge(request):
 
 
 def success(request, args):
+    if not request.user.is_authenticated:
+        return redirect('/')
     amount = args
     donation = math.trunc((int(amount) / 100))
 
@@ -60,4 +64,7 @@ def success(request, args):
 
 
 def failure(request):
+    if not request.user.is_authenticated:
+        return redirect('/')
+
     return render(request, 'donations/failure.html')
