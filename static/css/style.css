@@ -1,364 +1,387 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 /* ----- general styling and colours ----- */
+
 body {
-    z-index: 0;
-    background: #101828;
+  z-index: 0;
+  background: #101828;
 }
 
 section {
-    margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
 input,
 select,
 option {
-    color: #101828;
+  color: #101828;
 }
 
+
 /* general font styles */
+
 * {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #f9f9f9;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f9f9f9;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 p {
-    font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 
 /* ----- general button colours ----- */
+
 .btn-primary {
-    background-color: #B0C0D8;
-    border-color: #B0C0D8;
-    border-radius: 2px;
-    min-width: 8vw;
+  background-color: #B0C0D8;
+  border-color: #B0C0D8;
+  border-radius: 2px;
+  min-width: 8vw;
 }
 
+
 /* hover styles and overwriting bootstrap button styles for primary button */
+
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus,
 .btn-primary:not(:disabled):not(.disabled):active {
-    background-color: #7088A8;
-    border-color: #7088A8;
-    box-shadow: none;
+  background-color: #7088A8;
+  border-color: #7088A8;
+  box-shadow: none;
 }
 
 .btn-outline-primary {
-    background-color: none;
-    border-color: #c8d0e0;
-    border-radius: 2px;
-    min-width: 8vw;
-    color: #7088A8;
-} 
+  background: none;
+  border-color: #c8d0e0;
+  border-radius: 2px;
+  min-width: 8vw;
+  color: #7088A8;
+}
+
 
 /* hover styles and overwriting bootstrap button styles for outline-primary button */
+
 .btn-outline-primary:hover,
 .btn-outline-primary:active,
 .btn-outline-primary:focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active {
-    background-color: #B0C0D8;
-    border-color: #c8d0e0;
-    box-shadow: none;
+  background-color: #B0C0D8;
+  border-color: #c8d0e0;
+  box-shadow: none;
 }
 
 .btn-success {
-    background-color: #486890;
-    border-color: #486890;
-    border-radius: 2px;
-    min-width: 8vw;
-} 
+  background-color: #486890;
+  border-color: #486890;
+  border-radius: 2px;
+  min-width: 8vw;
+}
 
 .btn-success i {
-    color: white;
+  color: white;
 }
 
 .btn-success:hover,
 .btn-success:active,
 .btn-success:focus,
 .btn-success:not(:disabled):not(.disabled):active {
-    background-color: #283850;
-    border-color: #203048;
-    box-shadow: none;
+  background-color: #283850;
+  border-color: #203048;
+  box-shadow: none;
 }
 
+
 /* ----- Landing page ----- */
+
 #landing {
-    height: 100vh;
-    margin: 0;
-    background-image: url('../img/rivulet-landing.jpg');
-    background-size: cover;
-    background-repeat: none;
-    background-position-y: 1050px; 
-    background-position-x: -90px;
+  height: 100vh;
+  margin: 0;
+  background-image: url('../img/rivulet-landing.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: 1050px;
+  background-position-x: -90px;
 }
 
 #landing h1 {
-    font-family: 'Bebas Neue', cursive;
-    padding-top: 26vh;
-    margin-bottom: 5vh;
-    font-size: 5em;
-    letter-spacing: 0.1em;
-    color: #eaf0ffd3;
-    filter: drop-shadow(0 0.5rem 2rem #fff);
+  font-family: 'Bebas Neue', cursive;
+  padding-top: 26vh;
+  margin-bottom: 5vh;
+  font-size: 5em;
+  letter-spacing: 0.1em;
+  color: #eaf0ffd3;
+  filter: drop-shadow(0 0.5rem 2rem #fff);
 }
 
 #landing p {
-    color: rgb(255, 204, 0);;
-    font-size: 1.5rem;
-    filter: drop-shadow(0 0.1rem 0 #000);
-    margin-bottom: 4vw;
+  color: rgb(255, 204, 0);
+  ;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0.1rem 0 #000);
+  margin-bottom: 4vw;
 }
 
 #landing-buttons .btn-primary {
-    color: white;
-    background: none!important;
-    border: 1px solid white;
-    border-radius: 2px;
-    min-width: 8vw;
-    opacity: 0.6;
-    transition: 100ms;
+  color: white;
+  background: none!important;
+  border: 1px solid white;
+  border-radius: 2px;
+  min-width: 8vw;
+  opacity: 0.6;
+  transition: 100ms;
 }
 
 #landing-buttons i {
-    color: white;
+  color: white;
 }
 
 #landing-buttons .btn-primary:hover,
 #landing-buttons .btn-primary:active,
 #landing-buttons .btn-primary:focus,
 #landing-buttons .btn-primary:not(:disabled):not(.disabled):active {
-    opacity: 1;
-    box-shadow: none;
+  opacity: 1;
+  box-shadow: none;
 }
 
 @media (max-width: 500px) {
-    #landing {
-        background-position-y: 980px;
-        background-position-x: -332px;
-    }
+  #landing {
+    background-position-y: 980px;
+    background-position-x: -332px;
+  }
 }
 
+
 /* ----- The navbar and footer ----- */
+
+
 /* navbar */
+
 .navbar-brand {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 1.2rem;
-    letter-spacing: 0.3rem;
-    padding-left: 1rem;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 0.3rem;
+  padding-left: 1rem;
 }
 
 .nav-link i {
-    color: #101828;
+  color: #101828;
 }
 
+
 /* footer */
+
 #footer {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: #202836;
-    filter: drop-shadow(0 -0.7rem 3rem #000);
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #202836;
+  filter: drop-shadow(0 -0.7rem 3rem #000);
 }
 
 #faq {
-    float: right;
-    margin: 1vh 1vw;
-    color: white;
-    transition: 100ms;
+  float: right;
+  margin: 1vh 1vw;
+  color: white;
+  transition: 100ms;
 }
 
 #faq:hover {
-    color: royalblue;
+  color: royalblue;
 }
 
+
 /* ----- Styling for auth forms ----- */
+
 .form-container {
-    padding: 2vh 22vw;
+  padding: 2vh 22vw;
 }
 
 .form-container input {
-    width: 80%;
-    margin: 0;
+  width: 80%;
+  margin: 0;
 }
 
 .form-container label {
-    min-width: 19%;
-    margin: 0
+  min-width: 19%;
+  margin: 0
 }
 
 #id_remember {
-    width: auto;
-    margin-right: 70%;
+  width: auto;
+  margin-right: 70%;
 }
 
 .form-container p input {
-    border-radius: 2px;
-    border: none;
-    padding: 0.5vh 1vh;
-    background: rgba(0,0,0,0.1);
+  border-radius: 2px;
+  border: none;
+  padding: 0.5vh 1vh;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .form-container .btn {
-    width: 49%;
+  width: 49%;
 }
+
 
 /* style for the 'sign up' form */
 
 #id_password2 {
-    width: 72.5%;
+  width: 72.5%;
 }
 
 .form-container .btn-sign-up {
-    width: 100%;
+  width: 100%;
 }
 
+
 /* styling for password reset */
+
 #password-reset .btn {
-    width: 100%;
-    margin-bottom: 3vh;
+  width: 100%;
+  margin-bottom: 3vh;
 }
 
 #password-reset label {
-    padding-left: 0;
-    margin-left: 0;
-    padding-right: 8%;
-
+  padding-left: 0;
+  margin-left: 0;
+  padding-right: 8%;
 }
 
+
 /* styling for the donations form */
+
 #donation input {
-    width: 100%;
-    
+  width: 100%;
 }
 
 #donation label {
-    margin: 2rem 0 0.5rem 0; 
+  margin: 2rem 0 0.5rem 0;
 }
 
 #donation .btn-success {
-    margin-top: 2vh;
+  margin-top: 2vh;
 }
 
 
 /* ----- The library ----- */
+
+
 /* category titles */
+
 #most-viewed {
-    margin-top: 4vh;
+  margin-top: 4vh;
 }
 
 .popular-category-title {
-    color: rgb(255, 204, 0);;
-    filter: drop-shadow(0 0.1rem 0 #000);
+  color: rgb(255, 204, 0);
+  ;
+  filter: drop-shadow(0 0.1rem 0 #000);
 }
 
 
 /* Thumbnails and general library */
+
 .thumbnail-container {
-    position: relative;
-    padding: 0 1vw;
-    overflow: hidden;
-    transition: 200ms;
+  position: relative;
+  padding: 0 1vw;
+  overflow: hidden;
+  transition: 200ms;
 }
 
 .thumbnail-container:hover {
-    background-color: rgb(200, 208, 224);
-    transform: scale(1.5, 1.5);
-    z-index: 99;
+  background-color: rgb(200, 208, 224);
+  transform: scale(1.5, 1.5);
+  z-index: 99;
 }
 
 .thumbnail {
-    height: inital;
-    width: 100%;
-    overflow: hidden;
-    margin-top: 2vh;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 2vh;
 }
 
 .thumbnail-overflow {
-    height: 18vh;
-    overflow: hidden;
+  height: 18vh;
+  overflow: hidden;
 }
 
 .video-title {
-    font-size: 1em;
-    margin: 0 0 1vh 0;
+  font-size: 1em;
+  margin: 0 0 1vh 0;
 }
 
 .thumbnail-container .video-description {
-    padding: 3vh;
-    font-size: 0.6em;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-
-    position: absolute;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-
-    height: 100%;
-    width: 100%;
-
-    opacity: 0;
-    transition: 200ms;
+  padding: 3vh;
+  font-size: 0.6em;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 200ms;
 }
-
 
 .video-description:hover {
-    opacity: 1;
+  opacity: 1;
 }
+
 .thumbnail-container:hover {
-    background-color: rgb(200, 208, 224);
-    transform: scale(1.5, 1.5);
+  background-color: rgb(200, 208, 224);
+  transform: scale(1.5, 1.5);
 }
+
 
 /* styling on the player view */
+
 #player-back-button {
-    margin-left: 2vw;
-    font-size: 1.3em;
+  margin-left: 2vw;
+  font-size: 1.3em;
 }
 
-
-
 .category-row {
-    margin: 2vh 0 5vh 0;
-    background-color: rgba(175, 175, 175, 0.1);
+  margin: 2vh 0 5vh 0;
+  background-color: rgba(175, 175, 175, 0.1);
 }
 
 @media (max-width: 400px) {
-    .thumbnail-overflow {
-        height: 32vh;
-    }
-
-    #player-back-button {
-        margin-left: 6vw;
-        font-size: 1rem;
-    }
+  .thumbnail-overflow {
+    height: 32vh;
+  }
+  #player-back-button {
+    margin-left: 6vw;
+    font-size: 1rem;
+  }
 }
 
+
 /* ----- Userpage ----- */
+
 #userpage h3 {
-    padding-top: 1vh;
-    margin: 4vh;
+  padding-top: 1vh;
+  margin: 4vh;
 }
 
 #userpage p {
-    margin-bottom: 5vh;
+  margin-bottom: 5vh;
 }
 
 #userpage .btn {
-    width: 20%;
-    margin: 1vh auto;
+  width: 20%;
+  margin: 1vh auto;
 }
 
 @media (max-width: 600px) {
-    #userpage .btn {
-        width: 60%;
-    }
+  #userpage .btn {
+    width: 60%;
+  }
 }
