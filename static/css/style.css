@@ -104,8 +104,8 @@ p {
   background-image: url('../img/rivulet-landing.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: 1050px;
-  background-position-x: -90px;
+  background-position-y: -100px;
+  background-position-x: 0;
 }
 
 #landing h1 {
@@ -120,7 +120,6 @@ p {
 
 #landing p {
   color: rgb(255, 204, 0);
-  ;
   font-size: 1.5rem;
   filter: drop-shadow(0 0.1rem 0 #000);
   margin-bottom: 4vw;
@@ -150,11 +149,17 @@ p {
 
 @media (max-width: 500px) {
   #landing {
-    background-position-y: 980px;
-    background-position-x: -332px;
+    background-position-y: 0;
+    background-position-x: -356px;
   }
 }
 
+@media (max-width: 500px) {
+  #landing {0
+    background-position-y: ;
+    background-position-x: -356px;
+  }
+}
 
 /* ----- The navbar and footer ----- */
 
