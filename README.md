@@ -52,7 +52,7 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Actors - a model which would relate the actors to various videos that would allow users to filter and search by actors names.
 - Subcategories - a model which would have a many to one relationship with categories and allow users to dive deeper into filtering videos.
 - Storing more categories - allowing videos to have several categories for videos that match several categories definitions. 
-- Extended userpage - storing a user history which would be used to recommend videos and display a "latest watched" on the userpage.
+- Extended userpage - storing a user history which would be used to recommend videos and display a "latest watched" on the userpage. This would make it possible to store a users age and filter videos based on the PG integer in the video objects.
 - Subscription system - developing the donation system to have recurring payments and handling more webhooks. This would also be used for the user authorization and extended userpage to store information regarding payments, missed payments, etc. 
 - Video ratings - would allow users to submit a rating that would be used for a list of good and bad ratings to create an average score of a video. 
 - Recommedations - will use a users click and view history to create recommendations for the user.
