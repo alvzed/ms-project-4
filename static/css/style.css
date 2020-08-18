@@ -138,6 +138,13 @@ p {
     box-shadow: none;
 }
 
+@media (max-width: 500px) {
+    #landing {
+        background-position-y: 980px;
+        background-position-x: -332px;
+    }
+}
+
 /* ----- The navbar and footer ----- */
 /* navbar */
 .navbar-brand {

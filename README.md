@@ -45,6 +45,7 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Donations - allows users to submit small single payments via stripe to support the site. This is currently quite crude and only processes either succeeded payments or failed payments and redirecting them to a specific page based on this. 
 
 ### Features Left to Implement
+- Emails - sends verifications emails and password reset links to users. This is currently printed out in the console instead of emailed out, the reason for this is that an email would need to be connected to this and I do do nat want to make my own email publicly accessible. 
 - Actors - a model which would relate the actors to various videos that would allow users to filter and search by actors names.
 - Subcategories - a model which would have a many to one relationship with categories and allow users to dive deeper into filtering videos.
 - Storing more categories - allowing videos to have several categories for videos that match several categories definitions. 
@@ -110,18 +111,39 @@ Go through user stories one by one and see if they were fulfilled
     - Enter a new key word in the search bar, make sure it matches a title on the library front page. See how many videos appear and see if they match the number of results the message on the top of the page are telling you there are.
     - Enter a new key word that matches something in the description of a video, see how many results you get and if the amount matches the results message again. 
 4. Category filter
+    - Go to the library page.
+    - Click the category dropdown box on the navbar and select a category.
+    - Check if the heading on the page displays the selected category.
+    - Check if all videos in the selected category appear (you may need to double check the admin page for this).
 5. Admin page
+    - Go to the admin page and log in with a superuser.
+    - Check if all models appear on the screen. 
+        - Check each of them to see if all related fields appear.
+        - Create a new object.
+        - Click in on this new object and see if everything displays correctly. 
+        - Update something in the object.
+        - Delete the object.
 6. Donations
     1. Payment succeeded
+        - Go to the donations page.
+        - Enter information in all fields, the email should be prepopulated with your accounts email. Make sure to fill in the card field with 4242424242424242, and the date to any future date, the last field can be any number. 
+        - Press submit.
+        - Check that you are redirected properly and that the donation amount is visible on the success page.
     2. Payment failed
-7. User page
-8. Password reset
+        - Go to the donations page.
+        - Enter information in all fields, the email should be prepopulated with your accounts email. Make sure to fill in the card field with 4000000000000002, and the date to any future date, the last field can be any number. 
+        - Press submit.
+        - Check that you are redirected properly to the failure page.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+#### Current UI
 
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+This is how the site currently looks on a desktop and iPhone X.
 
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
+![Landing page](/wireframes/rivulet_landing_current.png)
+![Landing page mobile](/wireframes/rivulet_landing_current_mobile.png)
+![Library page](/wireframes/rivulet_library_current.png)
+![Library page mobile](/wireframes/rivulet_library_current_mobile.png)
+
 
 ## Deployment
 
