@@ -31,6 +31,7 @@ The wireframes for this project are quite simple as it took a lot of inspiration
  
 ### Existing Features
 - User authorization - allows users to create an account that stores user information and lets logged in user's see the content on the site. This includes sign up, login and logout pages.
+- Admin page - allows a superuser to log in to the admin panel and use CRUD functionality on all users, videos, categories, etc. This is currently the built in Django admin page as it fulfilled all the functionality needed for the admin user at the moment. This will be built out to a more fitting admin page and functionality on the site istelf in the future. 
 - Landing page - this view redirects logged in users to the library directly but stops unauthorized users and shows them buttons that are linked to the sign up and login pages. All views redirect to this page is the user isn't authorized.
 - Library - the main page of the site, it shows the user thumbnails of the following videos: 
     - The most 5 viewed videos and 
@@ -52,28 +53,69 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Video ratings - would allow users to submit a rating that would be used for a list of good and bad ratings to create an average score of a video. 
 - Recommedations - will use a users click and view history to create recommendations for the user.
 
+### Features in contrast to the user stories
+Go through user stories one by one and see if they were fulfilled
 
 ## Technologies Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
+- [Python](https://www.python.org/)
+    - Used as the back end language
+- [Django](https://www.djangoproject.com/)
+    - Used to make the back end views, urls, templates, and more. It was chosen because it makes the process easier and faster.
+- [Django Allauth](https://django-allauth.readthedocs.io/en/latest/overview.html)
+    - Used to make the authorization processes and views faster to implement.
 - [JQuery](https://jquery.com)
-    - The project uses **JQuery** to simplify DOM manipulation.
+    - The project uses **JQuery** to simplify DOM manipulation together with Bootstrap.
+- [Bootstrap 4.5.1](https://getbootstrap.com/)
+    - **Bootstrap** was mainly used for simplify design process, especially the responsiveness.
 
 
 ## Testing
-
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your user stories from the UX section and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
-
-Whenever it is feasible, prefer to automate your tests, and if you've done so, provide a brief explanation of your approach, link to the test file(s) and explain how to run them.
-
-For any scenarios that have not been automated, test the user stories manually and provide as much detail as is relevant. A particularly useful form for describing your testing process is via scenarios, such as:
-
-1. Contact form:
-    1. Go to the "Contact Us" page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid and verify that a success message appears.
+1. User authorization
+    - This testing process is here to make sure that users can only access the content of the site if they are logged in.
+    - Make sure you are logged out.
+    - Go to the site's landing page '/', see if you are redirected or stay on the landing page.
+    - Add 'library/' to the end of the url, see if you can access the library or if you are redirected to the landing page.
+    - Change 'library/' to 'profile/', see if you can access the userpage or if you are redirected to the landing page.
+    - Repeat the process for every url on the site. The only ones you should be able to access are the ones related to user authorization (login, etc), and the admin page as superusers need to be able to log in there.
+    - Note any bugs that have appeared and resolve any issues. 
+2. User sign up, login, and logout
+    1. Sign up
+        - Go to the landing page of the site.
+        - Click the sign up button and enter any information needed. 
+        - At this point you should be logged in automatically, note if there are any issues with this. 
+    2. Login
+        - Make sure you are logged out.
+        - Go to the landing page and click the login button.
+        - Enter your credentials.
+            - Try once with the password field empty.
+            - Try once with the wrong password.
+            - Try once with the correct information.
+            - Note any issues.
+        - See if you are redirected to the library.
+    3. Logout
+        - Make sure you are logged out.
+        - Go to the site, you should be redirected to the library. 
+        - Click the user dropdown on the navbar, click the log out option. You should be redirected to a page asking you if you are sure you want to log out.
+        - Click log out.
+        - Try to access the library, note if you can.
+        - Log in again. 
+        - Go to the userpage. 
+        - Click the log out button. You should be redirected to a page asking you if you are sure you want to log out.
+        - Click the log out button. 
+        - Note any issues with redirects and links on the page.
+3. Search
+    - Go to the library page.
+    - Enter a key word in the search bar, make sure it is gibberish and doesn't match any video (example 'dfhgdfh').
+    - See if any videos appear, check if you have a message on the top of the screen telling you there are no matches.
+    - Enter a new key word in the search bar, make sure it matches a title on the library front page. See how many videos appear and see if they match the number of results the message on the top of the page are telling you there are.
+    - Enter a new key word that matches something in the description of a video, see how many results you get and if the amount matches the results message again. 
+4. Category filter
+5. Admin page
+6. Donations
+    1. Payment succeeded
+    2. Payment failed
+7. User page
+8. Password reset
 
 In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
 
