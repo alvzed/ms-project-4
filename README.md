@@ -43,6 +43,9 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Player - A view that displays a specific video and starts playing it directly. 
 - User page - a view that currently displays a greeting including the user's username and three buttons: change password, donate and back to library. 
 - Donations - allows users to submit small single payments via stripe to support the site. This is currently quite crude and only processes either succeeded payments or failed payments and redirecting them to a specific page based on this. 
+- Most viewed videos - increments an integer in the video object whenever someone accesses the video in the player. This is then used to display the 5 most viewed videos on the main library page.
+- Most clicked categories - increments an integer in the category object whenever someone filters by that category. This is then used to display the 3 most clicked categories on the main library page.
+    - This also uses the most viewed videos feature, as it displays the 5 most viewed videos in each top category.
 
 ### Features Left to Implement
 - Emails - sends verifications emails and password reset links to users. This is currently printed out in the console instead of emailed out, the reason for this is that an email would need to be connected to this and I do do nat want to make my own email publicly accessible. 
@@ -55,7 +58,21 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Recommedations - will use a users click and view history to create recommendations for the user.
 
 ### Features in contrast to the user stories
-Go through user stories one by one and see if they were fulfilled
+ - As Adil, I want to watch some movies to relax in the evening
+For this user story Adil can easily log in to the site (or sign up) and strt streaming a video right away.
+
+ - As Hibo, I want to check out a streaming service recommended to me, and see the price and content easily.
+Hibo can quite easily create an account and start watching quickly and without too much of a hassle. 
+
+ - As Eivind, I want the site to recommend new videos to me based on my history
+While this isn't implemented yet, the most clicked categories and and most viewed videos features give some recommendations based on what all the users on the site click and view.
+
+ - As Catrin, I want to update my email address in my profile so I can easily recover my account now that my old one is lost
+This has not been implemented as it made more sense to have a password recovery functionality instead in the minimal viable product.
+
+ - As Oliver, I want to cancel my subscription since I no longer have time to use the service that much
+ - As Jasin, I want to update my payment info so my subscription can be renewed automatically
+The two of these have not been implemented as the site currently uses a donations feature. These would be the main focus of future versions of the project as the next step would be implementing the subscriptions feature.
 
 ## Technologies Used
 - [Python](https://www.python.org/)
@@ -135,6 +152,25 @@ Go through user stories one by one and see if they were fulfilled
         - Press submit.
         - Check that you are redirected properly to the failure page.
 
+ 7. Incrementing clicks/views
+    - The click and view counters are currently quite crude and use the same type of functionality. The reason they have different names despite their similarities is for future versions.
+    1. Incrementing views
+        - Go to the admin page.
+        - Check the amount of views of a specific video, note it down. 
+        - Go to the library page, click the video you have chosen.
+        - Go back to the admin page, and to the specific video object.
+        - Compare the integer to the number you have previously noted down.
+    2. Incrementing clicks
+        - Go to the admin page.
+        - Check the amount of views of a specific category, note it down. 
+        - Go to the library page, filter by the category you have chosen.
+        - Go back to the admin page, and to the specific category object.
+        - Compare the integer to the number you have previously noted down.
+
+##### Bugs discovered
+The main tests didn't yeild any bugs as they rely on Django which is quite a mature and stabile framework.
+What was dicovered is when incrementing clicks and views. Whenever you visit the url of one of the categories or videos it increments the clicks/views, that means that it will happen if someone simply refreshes the page as well. This is something to resolve in future versions.
+
 #### Current UI
 
 This is how the site currently looks on a desktop and iPhone X.
@@ -146,25 +182,32 @@ This is how the site currently looks on a desktop and iPhone X.
 
 
 ## Deployment
+Below is a short summary of how to deploy a site on H, I do not give as good of an explanation as you can find [on their site](https://devcenter.H.com/articles/getting-started-with-python). Please go to this site for a much better explanation.
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
+This project is hosted on H, specifically with the H CLI for python. 
+First make sure that you've installed H on your device, if not then install it. 
 
-In particular, you should provide all details of the differences between the deployed version and the development version, if any, including:
-- Different values for environment variables (Heroku Config Vars)?
-- Different configuration files?
-- Separate git branch?
+Login to H through the terminal by typing H login and pressing enter. 
+Push the project to H with your preferred method. 
+Set up all the config vars you need in the settings of your project.
 
-In addition, if it is not obvious, you should also describe how to run your code locally.
+Make sure to have a Procfile and requirements.txt so the webapp sets up properly. 
+
+Then launch the site with the command H ps:scale web=1. 
+A complete guide to the deployment process can be found [here](https://devcenter.H.com/articles/getting-started-with-python).
+
+**The main difference** between the deployed app and the development app is in a few if statements found on settings.py in the rivulet folder. Two if statemants based on an environment variable called USE_AWS decide if the site is in debug mode or not, and if they use the static files locally from an AWS bucket. The development version malsi uses an SQlite database while the deployed version uses Heroku's Postgres database. 
 
 
 ## Credits
+- A huge thank you to Emma Äberg for giving valuble feedback during the UI process, and for testing the site over and over again.
 
 ### Content
-- The text for section Y was copied from the [Wikipedia article Z](https://en.wikipedia.org/wiki/Z)
+- The videos on this site are mainly trailers from this [youtube channel](https://www.youtube.com/c/movieclipsTRAILERS). The synopsis for each video is also taken from there.
 
 ### Media
-- The photos used in this site were obtained from ...
+- The photos used in this site were obtained from [unsplash](https://unsplash.com/)
 
 ### Acknowledgements
 
-- I received inspiration for this project from X
+- I received inspiration for this project mainly from Netflix, but also Crunchyroll, HBO Nordic and Youtube.
