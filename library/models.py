@@ -1,4 +1,7 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+
+from user_profile.models import UserProfile
 
 
 # Create your models here.
@@ -29,3 +32,16 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Review(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    video = models.ForeignKey('Video', on_delete=models.CASCADE)
+    rating = models.PositiveSmallIntegerField(
+        default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    description = models.TextField()
+    thumbsup = models.PositiveIntegerField(default=0)
+    thumbsdown = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return super().__str__()

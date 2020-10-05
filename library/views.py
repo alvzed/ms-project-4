@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q, F
-from .models import Video, Category
+from .models import Video, Category, Review
 from user_profile.models import UserProfile
 
 
@@ -88,8 +88,12 @@ def player(request, video_id):
     video.views = F('views') + 1
     video.save()
 
+    """ This will return all the reviews for the video """
+    reviews = Review.objects.all().filter(video=video_id)
+
     context = {
         'video': video,
+        'reviews': reviews,
     }
 
     return render(request, 'library/player.html', context)

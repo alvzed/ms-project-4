@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Video
+from .models import Category, Video, Review
 
 
 class VideoAdmin(admin.ModelAdmin):
@@ -23,6 +23,18 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'video',
+        'rating',
+        'description',
+        'thumbsup',
+        'thumbsdown',
+    )
+
+
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Video, VideoAdmin)
+admin.site.register(Review, ReviewAdmin)

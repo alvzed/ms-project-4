@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <!-- The following code is taked directly from the youtube iframe api section -->
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
-    <a id="player-back-button" href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
+<!-- The following code is taked directly from the youtube iframe api section -->
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<section>
+	<div id="player"></div>
+	<a id="player-back-button" href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
 
-    <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
+	<script>
+		// 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
       tag.src = "https://www.youtube.com/iframe_api";
@@ -39,6 +40,9 @@
       function onPlayerReady(event) {
         event.target.playVideo();
       }
-    </script>
+	</script>
+
+	{% include './includes/reviews.html' %}
+</section>
 
 {% endblock %}
