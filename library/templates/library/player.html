@@ -7,6 +7,8 @@
 	<div id="player"></div>
 	<a id="player-back-button" href="{% url 'library' %}"><i class="fas fa-arrow-left"></i></a>
 
+	{% include './includes/reviews.html' %}
+
 	<script>
 		// 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -42,7 +44,6 @@
       }
 	</script>
 
-	{% include './includes/reviews.html' %}
 </section>
 
 {% endblock %}

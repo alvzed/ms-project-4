@@ -1,5 +1,11 @@
-<aside class="container p-5">
+<article class="container py-5 px-2">
+	<form action="" method="POST" id="review-form">
+		{% csrf_token %}
+		{{ form }}
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
 	{% for review in reviews %}
-	<p>{{ review.user }}</p>
+
 	{% endfor %}
-</aside>
+</article>
