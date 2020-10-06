@@ -5,7 +5,12 @@
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 
-	{% for review in reviews %}
-
-	{% endfor %}
+	<div id="review-section">
+		{% for review in reviews %}
+		<div class="container">
+			<h4>{{ review.user.username }}</h4>
+			<p>{{ review.description }}</p>
+		</div>
+		{% endfor %}
+	</div>
 </article>

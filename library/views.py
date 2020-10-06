@@ -92,7 +92,7 @@ def player(request, video_id):
 
     # Current session user
     user_id = request.user.id
-    user = UserProfile.objects.get(id=user_id)
+    user = User.objects.get(id=user_id)
     nickname = request.user.username
 
     """ This will return all the reviews for the video """
