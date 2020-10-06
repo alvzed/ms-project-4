@@ -7,3 +7,7 @@ class ReviewForm(forms.Form):
                                   widget=forms.TextInput(attrs={
                                       'placeholder': 'Very smart comment...'
                                   }))
+
+
+class EditReviewForm(forms.Form):
+    rating = forms.IntegerField(min_value=1, max_value=5)

@@ -1,22 +1,51 @@
 <article class="container py-5 px-2">
-	<form method="POST" id="review-form">
-		{% csrf_token %}
-		{{ form }}
-		<button type="submit" class="btn btn-primary">Submit</button>
-	</form>
+  <form method="POST" id="review-form">
+    {% csrf_token %} {{ form }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
-	<div id="review-section">
-		{% for review in reviews %}
-		<div class="container mt-3">
-			<p class="h5">{{ review.user.username }}
-				<span class="h4">{{ review.rating }}</span>
-			</p>
-			<p>{{ review.description }}</p>
-			{% if review.user == user %}
-			<a href="#" class="btn btn-sm btn-primary">Edit</a>
-			<a href="#" class="btn btn-sm btn-success">Delete</a>
-			{% endif %}
-		</div>
-		{% endfor %}
-	</div>
+  <div id="review-section">
+    {% for review in reviews %}
+    <div class="container mt-3">
+      <p class="h5">
+        {{ review.user.username }}
+        <span class="h4">{{ review.rating }}</span>
+      </p>
+      <p>{{ review.description }}</p>
+      {% if review.user == user %}
+      <div class="edit-form-container">
+        <button
+          href="#"
+          class="btn btn-sm btn-primary edit-button"
+          id="r{{ review.id }}"
+        >
+          Edit
+        </button>
+        <form method="POST" id="edit-form-{{ review.id }}">
+          {{ edit_form }}
+          <input type="text" value="{{ review.description }}" />
+          <input type="hidden" value="{{ review.id }}" />
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <a href="#" class="btn btn-sm btn-success">Delete</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
 </article>
+
+<script>
+  $(document).ready(function () {
+    $("body").click(function (event) {
+      console.log("clicked: " + event.target.nodeName);
+      var target = $(event.target);
+      if (target.is(".edit-button")) {
+        var container = target.parents()[0];
+        var form = target.next();
+        form.toggle();
+        console.log(form);
+      }
+    });
+  });
+</script>
