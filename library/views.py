@@ -98,7 +98,7 @@ def player(request, video_id):
     """ This will return all the reviews for the video """
     reviews = Review.objects.all().filter(video=video_id)
 
-    """ From here on is what happend when you submit a review """
+    """ From here on is what happens when you submit a review """
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
