@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q, F
 from .models import Video, Category, Review
+from django.contrib.auth.models import User
 from user_profile.models import UserProfile
 from .forms import ReviewForm
 
@@ -90,11 +91,25 @@ def player(request, video_id):
     video.save()
 
     # Current session user
-    user = request.user
+    user_id = request.user.id
+    user = UserProfile.objects.get(id=user_id)
     nickname = request.user.username
 
     """ This will return all the reviews for the video """
     reviews = Review.objects.all().filter(video=video_id)
+
+    """ From here on is what happend when you submit a review """
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            new_review = Review(
+                rating=data['rating'],
+                description=data['description'],
+                video=video,
+                user=user
+            )
+            new_review.save()
 
     context = {
         'video': video,
