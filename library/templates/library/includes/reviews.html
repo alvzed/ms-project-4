@@ -1,5 +1,5 @@
 <article class="container py-5 px-2">
-  <form method="POST" id="review-form">
+  <form method="POST" id="review-form" class="form-inline">
     {% csrf_token %} {{ form }}
     <input type="hidden" name="form" value="review-form" />
     <button type="submit" class="btn btn-primary">Submit</button>
@@ -15,14 +15,7 @@
       <p>{{ review.description }}</p>
       {% if review.user == user %}
       <div class="edit-form-container">
-        <button
-          href="#"
-          class="btn btn-sm btn-primary edit-button"
-          id="r{{ review.id }}"
-        >
-          Edit
-        </button>
-        <form method="POST" id="edit-form">
+        <form method="POST" id="edit-form" class="form-inline mb-2 edit-form">
           {% csrf_token %}
           <input
             type="number"
@@ -30,25 +23,35 @@
             min="1"
             max="5"
             required
+            class="form-control mr-1"
             id="id_rating"
             value="{{ review.rating }}"
           />
           <input
             type="text"
             name="description"
+            required
+            class="form-control mr-1 w-75"
             value="{{ review.description }}"
           />
           <input type="hidden" name="review-id" value="{{ review.id }}" />
           <input type="hidden" name="form" value="edit-form" />
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <button
+          href="#"
+          class="btn btn-sm btn-primary edit-button"
+          id="r{{ review.id }}"
+        >
+          Edit
+        </button>
+        <a
+          href="{% url 'delete_review' video_id=video.id review_id=review.id %}"
+          class="btn btn-sm btn-success"
+        >
+          Delete
+        </a>
       </div>
-      <a
-        href="{% url 'delete_review' video_id=video.id review_id=review.id %}"
-        class="btn btn-sm btn-success"
-      >
-        Delete
-      </a>
       {% endif %}
     </div>
     {% endfor %}
@@ -62,7 +65,7 @@
       var target = $(event.target);
       if (target.is(".edit-button")) {
         var container = target.parents()[0];
-        var form = target.next();
+        var form = target.prev();
         form.toggle();
         console.log(form);
       }
