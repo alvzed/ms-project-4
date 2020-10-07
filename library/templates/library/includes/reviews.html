@@ -28,7 +28,11 @@
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
-      <a href="#" class="btn btn-sm btn-success">Delete</a>
+      <a
+        href="{% url 'delete_review' video_id=video.id review_id=review.id %}"
+        class="btn btn-sm btn-success"
+        >Delete</a
+      >
       {% endif %}
     </div>
     {% endfor %}

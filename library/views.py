@@ -126,3 +126,9 @@ def player(request, video_id):
     }
 
     return render(request, 'library/player.html', context)
+
+
+def delete_review(request, review_id, video_id):
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    return redirect(reverse('player', args=video_id))
