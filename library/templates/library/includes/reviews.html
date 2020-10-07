@@ -1,6 +1,7 @@
 <article class="container py-5 px-2">
   <form method="POST" id="review-form">
     {% csrf_token %} {{ form }}
+    <input type="hidden" name="form" value="review-form" />
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
@@ -21,18 +22,33 @@
         >
           Edit
         </button>
-        <form method="POST" id="edit-form-{{ review.id }}">
-          {{ edit_form }}
-          <input type="text" value="{{ review.description }}" />
-          <input type="hidden" value="{{ review.id }}" />
+        <form method="POST" id="edit-form">
+          {% csrf_token %}
+          <input
+            type="number"
+            name="rating"
+            min="1"
+            max="5"
+            required
+            id="id_rating"
+            value="{{ review.rating }}"
+          />
+          <input
+            type="text"
+            name="description"
+            value="{{ review.description }}"
+          />
+          <input type="hidden" name="review-id" value="{{ review.id }}" />
+          <input type="hidden" name="form" value="edit-form" />
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
       <a
         href="{% url 'delete_review' video_id=video.id review_id=review.id %}"
         class="btn btn-sm btn-success"
-        >Delete</a
       >
+        Delete
+      </a>
       {% endif %}
     </div>
     {% endfor %}

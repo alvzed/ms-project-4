@@ -3,7 +3,7 @@ from django.db.models import Q, F
 from .models import Video, Category, Review
 from django.contrib.auth.models import User
 from user_profile.models import UserProfile
-from .forms import ReviewForm, EditReviewForm
+from .forms import ReviewForm
 
 
 # Create your views here.
@@ -100,21 +100,24 @@ def player(request, video_id):
 
     """ From here on is what happens when you submit a review """
     if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            if data:
-                print('it works')
-            else:
-                """
+        print(request.POST)
+        if request.POST['form'] == 'review-form':
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                data = form.cleaned_data
                 new_review = Review.objects.create(
                     rating=data['rating'],
                     description=data['description'],
                     video=video,
                     user=user
                 )
-                """
-                print('Normal instance')
+
+        if request.POST['form'] == 'edit-form':
+            form = request.POST
+            updated_review = Review.objects.get(pk=form['review-id'])
+            updated_review.description = form['description']
+            updated_review.rating = form['rating']
+            updated_review.save()
 
     context = {
         'video': video,
@@ -122,7 +125,6 @@ def player(request, video_id):
         'user': user,
         'nickname': nickname,
         'form': ReviewForm,
-        'edit_form': EditReviewForm,
     }
 
     return render(request, 'library/player.html', context)
