@@ -1,8 +1,10 @@
 <article class="container py-5 px-2">
-  <form method="POST" id="review-form" class="form-inline">
+  <form method="POST" id="review-form" class="form-inline row container">
     {% csrf_token %} {{ form }}
     <input type="hidden" name="form" value="review-form" />
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary col-12 col-md-2 col-lg-1">
+      Submit
+    </button>
   </form>
 
   <div id="review-section">
@@ -15,7 +17,11 @@
       <p>{{ review.description }}</p>
       {% if review.user == user %}
       <div class="edit-form-container">
-        <form method="POST" id="edit-form" class="form-inline mb-2 edit-form">
+        <form
+          method="POST"
+          id="edit-form"
+          class="form-inline mb-2 edit-form row"
+        >
           {% csrf_token %}
           <input
             type="number"
@@ -23,7 +29,7 @@
             min="1"
             max="5"
             required
-            class="form-control mr-1"
+            class="number-form-control col-6 col-lg-1"
             id="id_rating"
             value="{{ review.rating }}"
           />
@@ -31,12 +37,17 @@
             type="text"
             name="description"
             required
-            class="form-control mr-1 w-75"
+            class="form-control col-12 col-md-10 col-lg-8 w-100"
             value="{{ review.description }}"
           />
           <input type="hidden" name="review-id" value="{{ review.id }}" />
           <input type="hidden" name="form" value="edit-form" />
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-primary col-12 col-md-2 col-lg-1"
+          >
+            Submit
+          </button>
         </form>
         <button
           href="#"
