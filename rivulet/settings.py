@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '')
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['rivulet-stream.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['rivulet-stream.herokuapp.com', 'localhost', '*']
 
 
 # Application definition
@@ -108,7 +108,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = 'accounts/login/'
-LOGIN_REDIRECT_URL = '/library/'  # library is not yet set up
+LOGIN_REDIRECT_URL = '/library/'
 
 WSGI_APPLICATION = 'rivulet.wsgi.application'
 
