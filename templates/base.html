@@ -1,95 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    {% block meta %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% endblock %} {% block corecss %}
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/57a4e2c4be.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/style.css' %}"
+    />
+    {% endblock %} {% block corejs %}
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %} {% block stripe_css %} {% endblock %}
+    <title>Rivulet</title>
+  </head>
 
-<head>
-	{% block meta %}
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	{% endblock %}
-	{% block corecss %}
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<script src="https://kit.fontawesome.com/57a4e2c4be.js" crossorigin="anonymous"></script>
-	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-	{% load static %}
-	<link type="text/css" rel="stylesheet" href="{% static '/css/style.css' %}">
-	{% endblock %}
-	{% block corejs %}
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-	</script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-	</script>
-	<script src="https://js.stripe.com/v3/"></script>
-	{% endblock %}
-	{% block stripe_css %}
-	{% endblock %}
-	<title>Rivulet</title>
-</head>
-
-<body>
-	<!-- This if statement stops the navbar from rendering on the landing page -->
-	{% if not request.path == '/' %}
-	<!-- navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="{% url 'library' %}">Rivulet</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+  <body>
+    <!-- This if statement stops the navbar from rendering on the landing page -->
+    {% if not request.path == '/' %}
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'library' %}">Rivulet</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
       </button>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				{% if request.path == '/library/' %}
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Categories
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						{% for category in categories %}
-						<a class="dropdown-item"
-							href="{% url 'library' %}?genre={{ category.slug }}">{{ category.name }}</a>
-						{% endfor %}
-					</div>
-				</li>
-				{% endif %}
-				{% if request.path != '/donations/' %}
-				<li class="nav-item active">
-					<a class="nav-link" href="{% url 'donate' %}">Donate</a>
-				</li>
-				{% endif %}
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user"></i>
-					</a>
-					<div class="dropdown-menu" aria-labelledby="userDropdown">
-						<a class="dropdown-item" href="{% url 'userpage' %}">User Profile</a>
-						<a class="dropdown-item" href="{% url 'account_logout' %}">Log out
-							<i class="fas fa-sign-out-alt"></i></a>
-					</div>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'library' %}">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
-				<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
-	{% endif %}
-	{% block content %}
-	{% endblock %}
-	{% if not request.path == '/' %}
-	<footer id="footer" class="w-100">
-		<a id="faq" href="https://www.imdb.com/title/tt0910554/"><i class="far fa-question-circle"></i></a>
-	</footer>
-	{% endif %}
-	{% block stripe_js %}
-	{% endblock %}
-</body>
-
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          {% if request.path == '/library/' %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Categories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for category in categories %}
+              <a
+                class="dropdown-item"
+                href="{% url 'library' %}?genre={{ category.slug }}"
+                >{{ category.name }}</a
+              >
+              {% endfor %}
+            </div>
+          </li>
+          {% endif %} {% if request.path != '/donations/' %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'donate' %}">Donate</a>
+          </li>
+          {% endif %}
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="userDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="{% url 'userpage' %}"
+                >User Profile</a
+              >
+              <a class="dropdown-item" href="{% url 'account_logout' %}"
+                >Log out <i class="fas fa-sign-out-alt"></i
+              ></a>
+            </div>
+          </li>
+        </ul>
+        <form
+          class="form-inline my-2 my-lg-0"
+          method="GET"
+          action="{% url 'library' %}"
+        >
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            name="q"
+          />
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+    {% endif %} {% block content %} {% endblock %} {% if not request.path == '/'
+    %}
+    <footer id="footer" class="w-100">
+      <a id="faq" href="https://www.imdb.com/title/tt0910554/"
+        ><i class="far fa-question-circle"></i
+      ></a>
+    </footer>
+    {% endif %} {% block stripe_js %} {% endblock %}
+  </body>
 </html>
