@@ -196,6 +196,51 @@ The wireframes for this project are quite simple as it took a lot of inspiration
 - Go back to the admin page, and to the specific category object.
 - Compare the integer to the number you have previously noted down.
 
+8. Reviews
+
+Before beginning this testing section, make sure that you have created two separate accounts as it will be needed for the testing.
+This testing is separated into 5 sections, the first 4 matching the CRUD functionality. The last one will be regarding user authentication.
+CRUD, if you are not familiar with the term, is an abbreviation meaning:
+C. Create
+R. Read
+U. Update
+D. Delete
+
+###### Creating reviews
+
+- Start by making sure you are logged in to an account.
+- Go to the library page, open two or more videos in separate tabs by pressing Ctrl + left click.
+- Go to your first tab, look under the video, you will see a form. Enter a rating and a review and submit. The page should refresh and you should now be able to scroll down and see the review.
+- Repeat the step above on all tabs you have open.
+
+###### Reading reviews
+
+- Go to your first video tab.
+- Check that the review matches the one you submitted. Make sure that you no reviews you submitted on another video appears.
+- Repeat this on all open video tabs.
+
+###### Updating reviews
+
+- Go to any video tab.
+- Scroll down to any review, since you submitted these reviews there will be an Edit button and a Delete button rendered.
+- Click on the Edit button, two fields matching the reviews rating and the description should already be filled in.
+- Change either the rating, description, or both in any way. Click on the submit button.
+- The page should be automatically refreshed and you should see the updated review if you scroll down.
+
+###### Deleting reviews
+
+- Go to any video tab.
+- Scroll down to any review, since you submitted these reviews there will be an Edit button and a Delete button rendered.
+- Click the delete button. The page will automatically refresh.
+- Scroll down and check so that the review has been deleted.
+
+###### User authentication
+
+- If you are still logged in to the first account, log out.
+- Log in to the second account.
+- Go to any video where you left a review with the first account.
+- Check if any review not left by the second account has the Edit and Delete buttons rendered.
+
 ##### Bugs discovered
 
 The main tests didn't yield any bugs as they rely on Django which is quite a mature and stable framework.
@@ -213,6 +258,39 @@ This is how the site currently looks on a desktop and iPhone X.
 ## Database
 
 ![Database flow](/wireframes/database.png)
+
+Here I will break down the uses for each field of every model, point by point.
+
+1. User(Allauth)
+
+- The Email is mainly used for logins, and for prepopulating the donation field with the email.
+- The above also applied to the username, but it is also used to display username of someone who left a review.
+- The id (or pk) of the user is used as a foreign key in both the UserProfile model and the Review model.
+
+2. Category
+
+- The slug is used for filtering by category on the library page, and is a an argument in the URL.
+- Name is used to display what the different categories are, and what category you're currently filtering by. It is formatted in a way that would usually not work in the url (such as Sci Fi instead of sci_fi).
+- Clicks is used for the crude "popular categories" functionality that orders the categories displayed on the main library page.
+
+3. Video
+
+- The ID of each video is used both to display the correct video when you click on any link, and to build the URLs themselves. It is also used in the Review model as a foreign key.
+- The title is used on the libary page to display the title on the thumbnails.
+- The description is used for the same as the above.
+- video_link is a specific part of a Youtube URL used with the Youtube API to display the actual video on the Player view. It is also used to fetch the thumbnail image from Youtube to be displayed on the thumbnail.
+- views is used for the same crude functionality as the popular categories (and also used in the functionality). It increments whenever the video is visited and is then used to sort through the five most popular video's and display them on the top of the library page. It is also used in the same way to display the five most viewed videos of the most popular categories.
+
+4. Review
+
+- The ID is used in the CRUD functionality of the reviews, mainly for the final 3 letters of the acronym (Read, Update, Delete).
+- User foreign key is used to display the username of the user who left the review, and to render an edit and delete button for the user who left the review.
+- The Video foreign key is used to relate the reviews to the right video, and to render them on the right place.
+- The description is used for the main part of the review, containing all the text.
+
+The next point is a bit more free-form and will be discussion the features that the unused fields will be used for in the future.
+
+5. Currenty unused fields:
 
 The most notable thing about this flow is the UserProfile, and the thumbsup and thumbsdown of the Review model. The UserProfile is quite sparse, only storing a Foreign key from the Allauth user and a nickname. These are not actively being used and are there for future features such as storing view history and favourite videos.
 
