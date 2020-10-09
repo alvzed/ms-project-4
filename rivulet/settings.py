@@ -29,6 +29,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['rivulet-stream.herokuapp.com', 'localhost']
 
+USE_X_FORWARDED_HOST = True
+
 
 # Application definition
 
