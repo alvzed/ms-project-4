@@ -26,7 +26,8 @@
       rel="stylesheet"
       href="{% static 'css/style.css' %}"
     />
-    {% endblock %} {% block corejs %}
+    {% endblock %} 
+    {% block corejs %}
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -43,7 +44,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://js.stripe.com/v3/"></script>
-    {% endblock %} {% block stripe_css %} {% endblock %}
+    {% endblock %} 
+    {% block stripe_css %}
+    {% endblock %}
     <title>Rivulet</title>
   </head>
 
@@ -89,7 +92,8 @@
               {% endfor %}
             </div>
           </li>
-          {% endif %} {% if request.path != '/donations/' %}
+          {% endif %} 
+          {% if request.path != '/donations/' %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'donate' %}">Donate</a>
           </li>
@@ -134,13 +138,19 @@
         </form>
       </div>
     </nav>
-    {% endif %} {% block content %} {% endblock %} {% if not request.path == '/'
-    %}
+    {% endif %} 
+    
+    {% block content %} 
+    
+    {% endblock %} 
+    {% if not request.path == '/' %}
     <footer id="footer" class="w-100">
       <a id="faq" href="https://www.imdb.com/title/tt0910554/"
         ><i class="far fa-question-circle"></i
       ></a>
     </footer>
-    {% endif %} {% block stripe_js %} {% endblock %}
+    {% endif %} 
+    {% block stripe_js %} 
+    {% endblock %}
   </body>
 </html>
